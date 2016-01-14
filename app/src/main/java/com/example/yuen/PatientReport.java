@@ -34,6 +34,8 @@ public class PatientReport extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     int navItemId;
     private Toolbar toolbar;
+    private static final String NAV_ITEM_ID = "nav_index";
+
     private EditText inputEmail, inputTitle, inputMessage;
     private TextView level;
     private TextInputLayout inputLayoutEmail, inputLayoutTitle, inputLayoutMessage;
@@ -41,7 +43,7 @@ public class PatientReport extends AppCompatActivity {
     private Spinner spinner;
     private ArrayAdapter<String> lunchList;
     private Context mContext;
-    private static final String NAV_ITEM_ID = "nav_index";
+
 
     private String[] em_level = {"Low", "Medium", "High"};
 
@@ -56,6 +58,7 @@ public class PatientReport extends AppCompatActivity {
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         NavigationView view = (NavigationView) findViewById(R.id.navigation_view);
+        view.getMenu().getItem(1).setChecked(true);
         view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
@@ -65,13 +68,13 @@ public class PatientReport extends AppCompatActivity {
 
 
                     case R.id.nav_1:
-
-                        break;
-                    case R.id.nav_2:
                         Intent intent = new Intent();
-                        intent.setClass(PatientReport.this, Case_history_review.class);
+                        intent.setClass(PatientReport.this,Case_history_review.class);
                         //intent .putExtra("name", "Hello B Activity");
                         startActivity(intent);
+                        break;
+                    case R.id.nav_2:
+
                         break;
                     case R.id.nav_3:
                         break;

@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.yuen.PatientReport;
+import com.example.yuen.info.androidhive.showpatientlist.PatientList;
 
 public class Case_history_review extends AppCompatActivity {
 
@@ -44,20 +45,22 @@ public class Case_history_review extends AppCompatActivity {
             public boolean onNavigationItemSelected(MenuItem menuItem) {
                 Toast.makeText(Case_history_review.this, menuItem.getItemId() + " pressed", Toast.LENGTH_LONG).show();
                 Log.d(R.id.nav_1+"", menuItem.getItemId() + " ");
+                Intent intent = new Intent();
                 switch (menuItem.getItemId())
                 {
-
 
                     case R.id.nav_1:
 
                         break;
                     case R.id.nav_2:
-                        Intent intent = new Intent();
                         intent.setClass(Case_history_review.this,PatientReport.class);
                         //intent .putExtra("name", "Hello B Activity");
                         startActivity(intent);
                         break;
                     case R.id.nav_3:
+                        intent.setClass(Case_history_review.this,PatientList.class);
+                        //intent .putExtra("name", "Hello B Activity");
+                        startActivity(intent);
                         break;
                     case R.id.nav_4:
                         break;
@@ -129,7 +132,7 @@ public class Case_history_review extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putInt(NAV_ITEM_ID, navItemId);
+        //outState.putInt(NAV_ITEM_ID, navItemId);
     }
 
 

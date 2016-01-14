@@ -27,6 +27,13 @@
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
+        <activity
+            android:name="com.example.yuen.info.androidhive.showpatientlist.PatientList"
+            android:label="@string/patient_list"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
+
     </application>
 
 </manifest>
