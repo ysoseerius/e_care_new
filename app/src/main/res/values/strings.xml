@@ -3,4 +3,19 @@
     <string name="action_settings">Settings</string>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
+
+    <!-- ReportPatient.java -->
+    <dimen name="textsize">6dp</dimen>
+
+    <string name="patient_report">Report</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_title">Title</string>
+    <string name="hint_message">Message</string>
+    <string name="btn_send">Send</string>
+
+    <string name="err_msg_email">Enter the valid email</string>
+    <string name="err_msg_title">Emtpy title</string>
+    <string name="err_msg_message">Emtpy message</string>
+
+
 </resources>

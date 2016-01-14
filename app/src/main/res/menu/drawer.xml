@@ -2,17 +2,29 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/navigation_item_1"
+            android:id="@+id/nav_1"
             android:checked="true"
             android:icon="@drawable/hi"
             android:title="Navigation Items 1"/>
         <item
-            android:id="@+id/navigation_item_2"
+            android:id="@+id/nav_2"
             android:icon="@drawable/hi"
             android:title="Navigation Items 2"/>
         <item
-            android:id="@+id/navigation_item_3"
+            android:id="@+id/nav_3"
             android:icon="@drawable/hi"
             android:title="Navigation Items 3"/>
+        <item
+            android:id="@+id/nav_4"
+            android:icon="@drawable/hi"
+            android:title="Navigation Items 4"/>
+        <item
+            android:id="@+id/nav_5"
+            android:icon="@drawable/hi"
+            android:title="Navigation Items 5"/>
+        <item
+            android:id="@+id/nav_6"
+            android:icon="@drawable/hi"
+            android:title="Navigation Items 6"/>
     </group>
 </menu>

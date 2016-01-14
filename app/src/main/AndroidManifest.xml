@@ -21,7 +21,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity
+            android:name="com.example.yuen.PatientReport"
+            android:label="@string/patient_report"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
 
     </application>
 
