@@ -1,6 +1,5 @@
 package com.example.yuen.e_carei;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -9,20 +8,18 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.yuen.PatientReport;
-
 public class Case_history_review extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
     private TextView contentView;
     private int navItemId;
+
     private static final String NAV_ITEM_ID = "nav_index";
 
 
@@ -41,31 +38,8 @@ public class Case_history_review extends AppCompatActivity {
         view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
-                Toast.makeText(Case_history_review.this, menuItem.getItemId() + " pressed", Toast.LENGTH_LONG).show();
-                Log.d(R.id.nav_1+"", menuItem.getItemId() + " ");
-                switch (menuItem.getItemId())
-                {
+                Toast.makeText(Case_history_review.this, menuItem.getTitle() + " pressed", Toast.LENGTH_LONG).show();
 
-
-                    case R.id.nav_1:
-
-                        break;
-                    case R.id.nav_2:
-                        Intent intent = new Intent();
-                        intent.setClass(Case_history_review.this,PatientReport.class);
-                        //intent .putExtra("name", "Hello B Activity");
-                        startActivity(intent);
-                        break;
-                    case R.id.nav_3:
-                        break;
-                    case R.id.nav_4:
-                        break;
-                    case R.id.nav_5:
-                        break;
-                    case R.id.nav_6:
-                        break;
-
-                }
                 menuItem.setChecked(true);
                 drawerLayout.closeDrawers();
                 return true;
