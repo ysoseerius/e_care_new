@@ -19,7 +19,7 @@ public class Case_history_review extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private TextView contentView;
     private int navItemId;
-sa
+
     private static final String NAV_ITEM_ID = "nav_index";
 
 
