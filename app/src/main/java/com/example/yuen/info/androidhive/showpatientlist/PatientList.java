@@ -50,7 +50,7 @@ public class PatientList extends AppCompatActivity implements SwipeRefreshLayout
 	private int offSet = 0;
 
 	// Movies json url
-	private String url = "http://192.168.0.103/test/apps.php";
+	private String url = "http://192.168.0.103/test/db_patientlist.php";
 	private ProgressDialog pDialog;
 	private List<Patient> patientList = new ArrayList<Patient>();
 	private ListView listView;
@@ -163,7 +163,7 @@ public class PatientList extends AppCompatActivity implements SwipeRefreshLayout
 					case 0:
 						TextView c =(TextView)view.findViewById(R.id.title);
 						String item = c.getText().toString();
-						Log.d("id",item);
+						//Log.d("id",item);
 						break;
 
 					case 1:
@@ -201,7 +201,7 @@ public class PatientList extends AppCompatActivity implements SwipeRefreshLayout
 					public void onResponse(JSONArray response) {
 						Log.d(TAG, response.toString());
 						hidePDialog();
-						Log.d("id", "hi") ;
+						//Log.d("id", "hi") ;
 						// Parsing json
 						// reset the list
 						patientList.clear();
@@ -209,16 +209,20 @@ public class PatientList extends AppCompatActivity implements SwipeRefreshLayout
 
 						for (int i = 0; i < response.length();i++) {
 							try {
-								Log.d("id","hi1") ;
-								Log.d("i","i:"+i);
+								//Log.d("id","hi1") ;
+								//Log.d("i","i:"+i);
 
 								Patient patient = new Patient();
 
-								Log.d("length", "length:" + response.length());
+								//Log.d("length", "length:" + response.length());
 								JSONObject objid= response.getJSONObject(i);
 								//get id
-								patient.setTitle(objid.getString("id"));
+								patient.setUid(objid.getString("uid"));
 
+
+								JSONObject objname= response.getJSONObject(++i);
+								//get id
+								patient.setTitle(objname.getString("name"));
 								//Log.d("i","i:"+i);
 								//obj= response.getJSONObject(i+1);
 								//get image url second item
@@ -247,7 +251,7 @@ public class PatientList extends AppCompatActivity implements SwipeRefreshLayout
 								*/
 
 								// adding movie to movies array
-								if(i%2==1)
+								//if(i%3==1)
 									patientList.add(patient);
 
 								// updating offset value to highest value

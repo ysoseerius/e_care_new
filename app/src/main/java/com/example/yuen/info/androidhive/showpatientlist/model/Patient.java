@@ -4,20 +4,20 @@ import java.util.ArrayList;
 
 public class Patient {
 	private String title, thumbnailUrl;
-	private int year;
-	private double rating;
-	private ArrayList<String> genre;
+	private String uid;
+	//private double rating;
+	//private ArrayList<String> genre;
 
 	public Patient() {
 	}
 
-	public Patient(String name, String thumbnailUrl, int year, double rating,
+	public Patient(String name, String thumbnailUrl, String uid, double rating,
 			ArrayList<String> genre) {
 		this.title = name;
 		this.thumbnailUrl = thumbnailUrl;
-		this.year = year;
-		this.rating = rating;
-		this.genre = genre;
+		this.uid = uid;
+		//this.rating = rating;
+		//this.genre = genre;
 	}
 
 	public String getTitle() {
@@ -34,6 +34,14 @@ public class Patient {
 
 	public void setThumbnailUrl(String thumbnailUrl) {
 		this.thumbnailUrl = thumbnailUrl;
+	}
+
+	public String getUid() {
+		return uid;
+	}
+
+	public void setUid(String uid) {
+		this.uid = uid;
 	}
 /*
 	public int getYear() {

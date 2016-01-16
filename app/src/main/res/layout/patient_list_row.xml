@@ -9,12 +9,12 @@
     <!-- Thumbnail Image -->
     <com.example.yuen.info.androidhive.showpatientlist.CirculaireNetworkImageView
         android:id="@+id/thumbnail"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:elevation="8dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="20dp" />
 
     <!-- Movie Title -->
     <TextView
@@ -24,21 +24,26 @@
         android:textSize="@dimen/title"
         android:gravity="center"
         android:text="title"
-        android:layout_alignParentTop="true"
+        android:textColor="@color/colorPrimaryDark"
         android:layout_alignParentEnd="true"
-        android:layout_toEndOf="@+id/thumbnail"
-        android:layout_alignBottom="@+id/thumbnail" />
+        android:layout_below="@+id/uid"
+        android:layout_alignStart="@+id/uid"
+        android:layout_alignBottom="@+id/thumbnail"
+        />
+
+    <TextView
+        android:id="@+id/uid"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:gravity="center"
+        android:text="UID"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/thumbnail" />
 
     <!--Not in use
 
-    <TextView
-        android:id="@+id/rating"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/title"
-        android:layout_marginTop="1dip"
-        android:layout_toRightOf="@+id/thumbnail"
-        android:textSize="@dimen/rating" />
     
 
     <TextView
