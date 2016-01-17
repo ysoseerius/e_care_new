@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_row_selector"
+    android:padding="8dp" >
+
+    <!-- Thumbnail Image -->
+    <com.example.yuen.e_carei_doctor.customlistviewvolley.CirculaireNetworkImageView
+        android:id="@+id/thumbnail"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="8dp"
+        android:elevation="8dp"/>
+
+    <!-- Movie Title -->
+    <TextView
+        android:id="@+id/take_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:gravity="center"
+        android:text="name"
+        android:layout_alignBottom="@+id/thumbnail"
+        android:layout_alignStart="@+id/uid" />
+
+    <TextView
+        android:id="@+id/uid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:gravity="center"
+        android:text="uid"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/more"
+        android:layout_toEndOf="@+id/thumbnail" />
+
+    <TextView
+        android:id="@+id/aid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:gravity="center"
+        android:text="aid"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/thumbnail" />
+
+
+    <com.andexert.library.RippleView
+        android:id="@+id/more"
+        android:layout_width="?android:actionBarSize"
+        android:layout_height="?android:actionBarSize"
+        rv_centered="true"
+        rv_framerat="120"
+        rv_rippleDuration="300"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
+
+
+    </com.andexert.library.RippleView>
+
+    <android.support.design.widget.VisibilityAwareImageButton
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:text="+"
+        android:id="@+id/take_btn"
+        android:textSize="25dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:elevation="8dp"
+        android:background="@drawable/send_notice"
+        android:textColor="@android:color/white"
+        android:alpha="0.8"
+        android:layout_gravity="right"
+        android:layout_centerVertical="true"
+        android:layout_alignRight="@+id/more"
+        android:layout_alignEnd="@+id/more" />
+    <!--Not in use
+
+    <TextView
+        android:id="@+id/rating"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title"
+        android:layout_marginTop="1dip"
+        android:layout_toRightOf="@+id/thumbnail"
+        android:textSize="@dimen/rating" />
+    
+
+    <TextView
+        android:id="@+id/genre"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rating"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@+id/thumbnail"
+        android:textColor="@color/genre"
+        android:textSize="@dimen/genre" />
+
+
+    <TextView
+        android:id="@+id/releaseYear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/year"
+        android:textSize="@dimen/year" />
+    -->
+</RelativeLayout>

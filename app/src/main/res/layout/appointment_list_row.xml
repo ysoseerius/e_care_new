@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_row_selector"
+    android:padding="8dp" >
+
+    <!-- Thumbnail Image -->
+    <com.example.yuen.e_carei_doctor.customlistviewvolley.CirculaireNetworkImageView
+        android:id="@+id/thumbnail"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/ic_tab_contacts"
+        android:elevation="8dp"/>
+
+    <!-- Movie Title -->
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12dp"
+        android:text="naname"
+        android:layout_below="@+id/uid"
+        android:layout_toLeftOf="@+id/queue_btn"
+        android:layout_alignLeft="@+id/atype"
+        android:layout_alignStart="@+id/atype" />
+
+    <TextView
+        android:id="@+id/uid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12dp"
+        android:text="uid"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/title"
+        android:layout_alignEnd="@+id/title"
+        android:layout_toEndOf="@+id/thumbnail" />
+
+    <TextView
+        android:id="@+id/atype"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12dp"
+        android:text="atype"
+        android:layout_below="@+id/title"
+        android:layout_toLeftOf="@+id/queue_btn"
+        android:layout_toRightOf="@+id/thumbnail"
+        android:layout_toEndOf="@+id/thumbnail" />
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12dp"
+        android:text="time"
+        android:layout_below="@+id/ctype"
+        android:layout_alignRight="@+id/ctype"
+        android:layout_alignEnd="@+id/ctype"
+        android:layout_toRightOf="@+id/thumbnail"
+        android:layout_toEndOf="@+id/thumbnail" />
+
+    <TextView
+        android:id="@+id/ctype"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12dp"
+        android:text="ctype"
+        android:layout_below="@+id/atype"
+        android:layout_toRightOf="@+id/thumbnail"
+        android:layout_alignRight="@+id/atype"
+        android:layout_alignEnd="@+id/atype" />
+
+    <TextView
+        android:id="@+id/queue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:text="queue"
+        android:layout_below="@+id/time"
+        android:layout_alignRight="@+id/time"
+        android:layout_alignEnd="@+id/time"
+        android:layout_toRightOf="@+id/textView"
+        android:layout_toEndOf="@+id/textView" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12dp"
+        android:gravity="center"
+        android:text="Queue:"
+        android:layout_below="@+id/time"
+        android:layout_toRightOf="@+id/thumbnail"
+        android:layout_toEndOf="@+id/thumbnail"
+        android:id="@+id/textView" />
+
+
+    <com.andexert.library.RippleView
+        android:id="@+id/more"
+        android:layout_width="?android:actionBarSize"
+        android:layout_height="?android:actionBarSize"
+        rv_centered="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        rv_framerat="120"
+        rv_rippleDuration="300"
+        android:layout_alignParentBottom="true">
+
+    </com.andexert.library.RippleView>
+
+    <android.support.v7.widget.AppCompatButton
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:text="+"
+        android:id="@+id/add_btn"
+        android:textSize="25dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:elevation="8dp"
+        android:background="@drawable/btn_shape"
+        android:textColor="@android:color/white"
+        android:alpha="0.8"
+        android:layout_gravity="right"
+        android:layout_alignTop="@+id/queue_btn"
+        android:layout_alignRight="@+id/more"
+        android:layout_alignEnd="@+id/more" />
+
+    <android.support.design.widget.VisibilityAwareImageButton
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:text="+"
+        android:id="@+id/queue_btn"
+        android:textSize="25dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:elevation="8dp"
+        android:background="@drawable/send"
+        android:textColor="@android:color/white"
+        android:alpha="0.8"
+        android:layout_below="@+id/title"
+        android:layout_toLeftOf="@+id/more"
+        android:layout_toStartOf="@+id/more" />
+
+    <!--Not in use
+
+    <TextView
+        android:id="@+id/rating"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title"
+        android:layout_marginTop="1dip"
+        android:layout_toRightOf="@+id/thumbnail"
+        android:textSize="@dimen/rating" />
+    
+
+    <TextView
+        android:id="@+id/genre"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rating"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@+id/thumbnail"
+        android:textColor="@color/genre"
+        android:textSize="@dimen/genre" />
+
+
+    <TextView
+        android:id="@+id/releaseYear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/year"
+        android:textSize="@dimen/year" />
+    -->
+</RelativeLayout>
