@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,6 +42,10 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        toolbar.setTitle("Login");
+
+
         inputUsername = (EditText) findViewById(R.id.username);
         inputPassword = (EditText) findViewById(R.id.password);
         btnLogin = (Button) findViewById(R.id.btnLogin);
@@ -69,13 +74,13 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view) {
-                String email = inputUsername.getText().toString().trim();
+                String username = inputUsername.getText().toString().trim();
                 String password = inputPassword.getText().toString().trim();
 
                 // Check for empty data in the form
-                if (!email.isEmpty() && !password.isEmpty()) {
+                if (!username.isEmpty() && !password.isEmpty()) {
                     // login user
-                    checkLogin(email, password);
+                    checkLogin(username, password);
                 } else {
                     // Prompt user to enter credentials
                     Toast.makeText(getApplicationContext(),
@@ -126,6 +131,8 @@ public class LoginActivity extends AppCompatActivity {
 
             qrresult = qrresult.substring(3);
 
+            Log.d("hihihhi", qrresult);
+
             qrLogin(qrresult);
         }
     }
@@ -133,7 +140,7 @@ public class LoginActivity extends AppCompatActivity {
     /**
      * function to verify login details in mysql db
      * */
-    private void checkLogin(final String email, final String password) {
+    private void checkLogin(final String username, final String password) {
         // Tag used to cancel the request
         String tag_string_req = "req_login";
 
@@ -160,18 +167,34 @@ public class LoginActivity extends AppCompatActivity {
                         session.setLogin(true);
 
                         // Now store the user in SQLite
-                        String uid = jObj.getString("uid");
+
 
                         JSONObject user = jObj.getJSONObject("user");
+                        String uid = user.getString("uid");
                         String name = user.getString("name");
-                        String email = user.getString("email");
-                        String created_at = user
-                                .getString("created_at");
+                        String age = user.getString("age");
+                        String sex = user.getString("sex");
+                        String hkid = user.getString("hkid");
+                        String account_type = user.getString("Account_type");
+                        String phone = user.getString("phone");
+
 
                         // Inserting row in users table
-                        db.addUser(name, email, uid, created_at);
+                        db.addUser(uid, name, age, sex, hkid, account_type, phone);
 
                         // Launch main activity
+//                        if(account_type=="1")
+//                            ;
+//                            else
+//                            ;
+                        HashMap<String, String> dbuser = db.getUserDetails();
+
+                        String name2 = dbuser.get("name");
+
+                        Toast.makeText(getApplicationContext(),
+                                "Hello, " + name2 + " . " + "Welcome back! ", Toast.LENGTH_LONG).show();
+
+
                         Intent intent = new Intent(LoginActivity.this,
                                 com.example.yuen.e_carei.Case_history_review.class);
                         startActivity(intent);
@@ -204,7 +227,7 @@ public class LoginActivity extends AppCompatActivity {
             protected Map<String, String> getParams() {
                 // Posting parameters to login url
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("email", email);
+                params.put("username", username);
                 params.put("password", password);
 
                 return params;
@@ -242,16 +265,25 @@ public class LoginActivity extends AppCompatActivity {
                         session.setLogin(true);
 
                         // Now store the user in SQLite
-                        String uid = jObj.getString("uid");
-
                         JSONObject user = jObj.getJSONObject("user");
+                        String uid = user.getString("uid");
                         String name = user.getString("name");
-                        String email = user.getString("email");
-                        String created_at = user
-                                .getString("created_at");
+                        String age = user.getString("age");
+                        String sex = user.getString("sex");
+                        String hkid = user.getString("hkid");
+                        String account_type = user.getString("Account_type");
+                        String phone = user.getString("phone");
+
 
                         // Inserting row in users table
-                        db.addUser(name, email, uid, created_at);
+                        db.addUser(uid, name, age, sex, hkid, account_type, phone);
+
+                        HashMap<String, String> dbuser = db.getUserDetails();
+
+                        String name2 = dbuser.get("name");
+
+                        Toast.makeText(getApplicationContext(),
+                                "Hello, " + name2 + " . " + "Welcome back! ", Toast.LENGTH_LONG).show();
 
                         // Launch main activity
                         Intent intent = new Intent(LoginActivity.this,
@@ -286,7 +318,7 @@ public class LoginActivity extends AppCompatActivity {
             protected Map<String, String> getParams() {
                 // Posting parameters to login url
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("id", qrresult);
+                params.put("uid", qrresult);
 
                 return params;
             }
