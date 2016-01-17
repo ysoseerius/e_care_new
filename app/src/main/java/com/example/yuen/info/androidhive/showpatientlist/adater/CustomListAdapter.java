@@ -1,6 +1,7 @@
 package com.example.yuen.info.androidhive.showpatientlist.adater;
 
 import android.app.Activity;
+import android.app.Notification;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +22,7 @@ public class CustomListAdapter extends BaseAdapter {
 	private Activity activity;
 	private LayoutInflater inflater;
 	private List<Patient> patientItems;
+	private Notification notification;
 	//private String url = "http://192.168.0.100/test/db_update.php";
 	ImageLoader imageLoader = AppController.getInstance().getImageLoader();
 

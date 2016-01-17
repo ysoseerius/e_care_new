@@ -3,6 +3,7 @@
     package="com.example.yuen.e_carei">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SEND_SMS"/>
 
     <application
         android:name="com.example.yuen.e_carei_app.AppController"
@@ -42,7 +43,12 @@
 
         </activity>
 
-
+        <activity
+            android:name="com.example.yuen.e_carei_doctor.activity.IconTextTabsActivity"
+            android:label="@string/title_activity_icon_text_tabs"
+            android:theme="@style/AppTheme.NoActionBar"
+            >
+        </activity>
     </application>
 
 </manifest>

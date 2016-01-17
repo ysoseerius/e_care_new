@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.yuen.PatientReport;
+import com.example.yuen.e_carei_doctor.activity.IconTextTabsActivity;
 import com.example.yuen.info.androidhive.showpatientlist.PatientList;
 
 public class Case_history_review extends AppCompatActivity {
@@ -66,6 +67,9 @@ public class Case_history_review extends AppCompatActivity {
                     case R.id.nav_4:
                         break;
                     case R.id.nav_5:
+                        //用來試appointment list
+                        intent.setClass(Case_history_review.this, IconTextTabsActivity.class);
+                        startActivity(intent);
                         break;
                     case R.id.nav_6:
                         //用黎試LOGIN, 可以刪
