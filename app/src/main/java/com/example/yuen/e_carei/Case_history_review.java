@@ -39,6 +39,8 @@ public class Case_history_review extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("E-care");
         setSupportActionBar(toolbar);
+        //set drawer name
+        TextView username = (TextView)findViewById(R.id.name);
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         NavigationView view = (NavigationView) findViewById(R.id.navigation_view);
