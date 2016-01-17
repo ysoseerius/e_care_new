@@ -19,4 +19,12 @@
 
     <!-- PatientList.java -->
     <string name="patient_list">Patient List</string>
+
+    <!--login-->
+    <string name="hint_username">Username</string>
+    <string name="hint_password">Password</string>
+    <string name="btn_login">LOGIN</string>
+
+
+
 </resources>

@@ -33,6 +33,15 @@
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
+        <activity
+            android:name="com.example.yuen.e_carei_login.LoginActivity"
+            android:label="@string/btn_login"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustPan"
+            android:theme="@style/AppTheme">
+
+        </activity>
+
 
     </application>
 

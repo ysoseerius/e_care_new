@@ -25,6 +25,7 @@ public class Case_history_review extends AppCompatActivity {
     private TextView contentView;
     private int navItemId;
 
+
     private static final String NAV_ITEM_ID = "nav_index";
 
 
@@ -67,6 +68,9 @@ public class Case_history_review extends AppCompatActivity {
                     case R.id.nav_5:
                         break;
                     case R.id.nav_6:
+                        //用黎試LOGIN, 可以刪
+                        intent.setClass(Case_history_review.this, com.example.yuen.e_carei_login.LoginActivity.class);
+                        startActivity(intent);
                         break;
 
                 }
