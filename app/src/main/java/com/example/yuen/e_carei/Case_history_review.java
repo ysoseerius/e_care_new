@@ -69,6 +69,8 @@ public class Case_history_review extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case R.id.nav_4:
+                        intent.setClass(Case_history_review.this, queueshow.class);
+                        startActivity(intent);
                         break;
                     case R.id.nav_5:
                         //用來試appointment list

@@ -30,6 +30,7 @@
 
         <activity
             android:name="com.example.yuen.info.androidhive.showpatientlist.PatientList"
+            android:windowSoftInputMode="stateHidden"
             android:label="@string/patient_list"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
@@ -52,7 +53,14 @@
 
         <activity
             android:name="com.example.yuen.e_carei.Appointmentcreate"
-            android:label="@string/title_activity_icon_text_tabs"
+            android:label="Create Appointment"
+            android:theme="@style/AppTheme.NoActionBar"
+            >
+        </activity>
+
+        <activity
+            android:name="com.example.yuen.e_carei.queueshow"
+            android:label="Show queue"
             android:theme="@style/AppTheme.NoActionBar"
             >
         </activity>

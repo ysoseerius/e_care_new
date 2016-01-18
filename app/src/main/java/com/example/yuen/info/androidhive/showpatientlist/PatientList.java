@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,6 +42,8 @@ public class PatientList extends AppCompatActivity implements SwipeRefreshLayout
 
 	private DrawerLayout drawerLayout;
 	int navItemId;
+	// Search EditText
+	EditText inputSearch;
 	private Toolbar toolbar;
 	private static final String NAV_ITEM_ID = "nav_index";
 
@@ -50,7 +53,7 @@ public class PatientList extends AppCompatActivity implements SwipeRefreshLayout
 	private int offSet = 0;
 
 	// Movies json url
-	private String url = "http://192.168.0.103/test/db_patientlist.php";
+	private String url = "http://192.168.43.216/test/db_patientlist.php";
 	private ProgressDialog pDialog;
 	private List<Patient> patientList = new ArrayList<Patient>();
 	private ListView listView;
@@ -84,7 +87,7 @@ public class PatientList extends AppCompatActivity implements SwipeRefreshLayout
 						break;
 					case R.id.nav_2:
 						Intent intent = new Intent();
-						intent.setClass(PatientList.this,PatientReport.class);
+						intent.setClass(PatientList.this, PatientReport.class);
 						//intent .putExtra("name", "Hello B Activity");
 						startActivity(intent);
 						break;
@@ -120,6 +123,8 @@ public class PatientList extends AppCompatActivity implements SwipeRefreshLayout
 		drawerLayout.setDrawerListener(actionBarDrawerToggle);
 		actionBarDrawerToggle.syncState();
 
+
+
 		listView = (ListView) findViewById(R.id.list);
 		swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
 
@@ -150,6 +155,7 @@ public class PatientList extends AppCompatActivity implements SwipeRefreshLayout
 								}
 		);
 
+
 		listView.setAdapter(adapter);
 
 		// Click event for single list row
@@ -176,9 +182,6 @@ public class PatientList extends AppCompatActivity implements SwipeRefreshLayout
 
 	}
 
-	/**
-	 * This method is called when swipe refresh is pulled down
-	 */
 	@Override
 	public void onRefresh() {
 		fetchPatients();
@@ -252,7 +255,7 @@ public class PatientList extends AppCompatActivity implements SwipeRefreshLayout
 
 								// adding movie to movies array
 								//if(i%3==1)
-									patientList.add(patient);
+								patientList.add(patient);
 
 								// updating offset value to highest value
 								//if (i >= offSet)
