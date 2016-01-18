@@ -107,7 +107,7 @@ public class PatientReport extends AppCompatActivity {
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
 
-        level= (TextView) findViewById(R.id.level);
+        level= (TextView) findViewById(R.id.date_label);
 
         inputLayoutEmail = (TextInputLayout) findViewById(R.id.input_layout_email);
         inputLayoutTitle = (TextInputLayout) findViewById(R.id.input_layout_title);
@@ -117,7 +117,7 @@ public class PatientReport extends AppCompatActivity {
         inputMessage = (EditText) findViewById(R.id.input_message);
         btnSend = (Button) findViewById(R.id.btn_send);
         mContext = this.getApplicationContext();
-        spinner = (Spinner)findViewById(R.id.my_spinner);
+        spinner = (Spinner)findViewById(R.id.time_spinner);
         lunchList = new ArrayAdapter<String>(PatientReport.this, android.R.layout.simple_spinner_item, em_level);
         spinner.setAdapter(lunchList);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

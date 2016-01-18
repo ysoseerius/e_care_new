@@ -54,7 +54,9 @@ public class Case_history_review extends AppCompatActivity {
                 {
 
                     case R.id.nav_1:
-
+                        intent.setClass(Case_history_review.this,Appointmentcreate.class);
+                        //intent .putExtra("name", "Hello B Activity");
+                        startActivity(intent);
                         break;
                     case R.id.nav_2:
                         intent.setClass(Case_history_review.this,PatientReport.class);

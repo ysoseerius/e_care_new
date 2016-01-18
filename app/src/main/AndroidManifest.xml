@@ -49,6 +49,14 @@
             android:theme="@style/AppTheme.NoActionBar"
             >
         </activity>
+
+        <activity
+            android:name="com.example.yuen.e_carei.Appointmentcreate"
+            android:label="@string/title_activity_icon_text_tabs"
+            android:theme="@style/AppTheme.NoActionBar"
+            >
+        </activity>
+
     </application>
 
 </manifest>

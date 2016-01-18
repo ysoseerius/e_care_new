@@ -79,12 +79,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Emergency Level:"
-            android:id="@+id/level" />
+            android:id="@+id/date_label" />
 
         <Spinner
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/my_spinner"
+            android:id="@+id/time_spinner"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"/>
 
