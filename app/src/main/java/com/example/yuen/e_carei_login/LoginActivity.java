@@ -112,6 +112,8 @@ public class LoginActivity extends AppCompatActivity {
                     startActivityForResult(i, 0);
                 } catch(ActivityNotFoundException ex) {
                     //若沒安裝 QRDroid，則開啟 Google Play商店，並顯示 QRDroid App
+                    Toast.makeText(getApplicationContext(),
+                            "Please install this QR code scanner first", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=la.droid.qr"));
                     startActivity(intent);
                 }
