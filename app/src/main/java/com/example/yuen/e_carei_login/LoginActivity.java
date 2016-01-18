@@ -176,11 +176,12 @@ public class LoginActivity extends AppCompatActivity {
                         String sex = user.getString("sex");
                         String hkid = user.getString("hkid");
                         String account_type = user.getString("Account_type");
+                        String image = user.getString("image");
                         String phone = user.getString("phone");
 
 
                         // Inserting row in users table
-                        db.addUser(uid, name, age, sex, hkid, account_type, phone);
+                        db.addUser(uid, name, age, sex, hkid, account_type, image, phone);
 
                         // Launch main activity
 //                        if(account_type=="1")
@@ -272,11 +273,12 @@ public class LoginActivity extends AppCompatActivity {
                         String sex = user.getString("sex");
                         String hkid = user.getString("hkid");
                         String account_type = user.getString("Account_type");
+                        String image = user.getString("image");
                         String phone = user.getString("phone");
 
 
                         // Inserting row in users table
-                        db.addUser(uid, name, age, sex, hkid, account_type, phone);
+                        db.addUser(uid, name, age, sex, hkid, account_type, image, phone);
 
                         HashMap<String, String> dbuser = db.getUserDetails();
 
