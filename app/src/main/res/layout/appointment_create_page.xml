@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.example.yuen.e_carei.Case_history_review">
+
+    <android.support.v4.widget.DrawerLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <!-- your content layout -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+        </android.support.design.widget.AppBarLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="UID:"
+                android:id="@+id/textView3"
+                android:layout_below="@+id/tvInvisibleError_time"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="UID:"
+                android:id="@+id/uid_show"
+                android:layout_below="@+id/textView3"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="name"
+                android:layout_below="@+id/name_label"
+                android:layout_alignParentStart="true"
+                android:id="@+id/name_show" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name:"
+                android:id="@+id/name_label"
+                android:layout_below="@+id/uid_show"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="21dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Appointment Type(A:in advance B.today):"
+            android:id="@+id/atype_text"
+            android:layout_marginTop="30dp"
+            android:layout_below="@+id/name_show"
+            android:layout_alignParentStart="true" />
+
+        <Spinner
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/time_spinner"
+            android:spinnerMode="dropdown"
+            android:layout_below="@+id/date_label"
+            android:layout_alignEnd="@+id/btn_send" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Time(o&apos; clock):"
+                android:id="@+id/date_label"
+                android:layout_below="@+id/date_spinner"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="10dp"
+                android:visibility="gone" />
+
+            <Spinner
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/atype_spinner"
+                android:spinnerMode="dropdown"
+                android:layout_below="@+id/atype_text"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date:"
+                android:id="@+id/time_label"
+                android:layout_below="@+id/atype_spinner"
+                android:layout_alignParentStart="true"
+                android:layout_alignEnd="@+id/name_show"
+                android:layout_marginTop="10dp"
+                android:visibility="gone" />
+
+            <Spinner
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/date_spinner"
+                android:spinnerMode="dropdown"
+                android:layout_below="@+id/time_label"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/error_msg"
+                android:text="hisdasdaas"
+                android:layout_below="@+id/time_spinner"
+                android:layout_alignParentStart="true"
+                android:layout_alignEnd="@+id/time_spinner"
+                android:layout_above="@+id/btn_send"
+                android:visibility="gone"/>
+
+            <Button
+                android:id="@+id/btn_send"
+                android:layout_width="382dp"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_send"
+                android:background="@color/colorPrimary"
+                android:textColor="@android:color/white"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="false"
+                android:layout_marginBottom="30dp" />
+
+    </RelativeLayout>
+</LinearLayout>
+        <android.support.design.widget.NavigationView
+            android:id="@+id/navigation_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            app:headerLayout="@layout/drawer_header"
+            app:menu="@menu/drawer" />
+    </android.support.v4.widget.DrawerLayout>
+
+</android.support.design.widget.CoordinatorLayout>
