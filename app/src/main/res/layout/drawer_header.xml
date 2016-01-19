@@ -5,16 +5,16 @@
     android:background="#0097a7"
     >
     <com.example.yuen.e_carei_doctor.customlistviewvolley.CirculaireNetworkImageView
-        android:id="@+id/thumbnail"
+        android:id="@+id/drawer_thumbnail"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginRight="8dp"
         android:elevation="8dp"
-        android:layout_above="@+id/name"
-        android:layout_alignStart="@+id/name" />
+        android:layout_above="@+id/drawer_name"
+        android:layout_alignStart="@+id/drawer_name" />
 
     <TextView
-        android:id="@+id/name"
+        android:id="@+id/drawer_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="24dp"

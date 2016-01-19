@@ -34,8 +34,11 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.yuen.PatientReport;
+import com.example.yuen.e_carei.Appointmentcreate;
 import com.example.yuen.e_carei.Case_history_review;
 import com.example.yuen.e_carei.R;
+import com.example.yuen.e_carei.queueshow;
 
 import java.util.List;
 
@@ -69,25 +72,35 @@ public class AlarmActivity extends BaseActivity {
 			public boolean onNavigationItemSelected(MenuItem menuItem) {
 				Toast.makeText(AlarmActivity.this, menuItem.getItemId() + " pressed", Toast.LENGTH_LONG).show();
 				Log.d(R.id.nav_1 + "", menuItem.getItemId() + " ");
+				Intent intent = new Intent();
 				switch (menuItem.getItemId()) {
-
-
 					case R.id.nav_1:
-						Intent intent = new Intent();
 						intent.setClass(AlarmActivity.this, Case_history_review.class);
 						//intent .putExtra("name", "Hello B Activity");
 						startActivity(intent);
 						break;
 					case R.id.nav_2:
-
+						intent.setClass(AlarmActivity.this, queueshow.class);
+						//intent .putExtra("name", "Hello B Activity");
+						startActivity(intent);
 						break;
 					case R.id.nav_3:
+						intent.setClass(AlarmActivity.this, Appointmentcreate.class);
+						//intent .putExtra("name", "Hello B Activity");
+						startActivity(intent);
 						break;
 					case R.id.nav_4:
+						intent.setClass(AlarmActivity.this, AlarmActivity.class);
+						//intent .putExtra("name", "Hello B Activity");
+						startActivity(intent);
 						break;
 					case R.id.nav_5:
+						intent.setClass(AlarmActivity.this, PatientReport.class);
+						//intent .putExtra("name", "Hello B Activity");
+						startActivity(intent);
 						break;
 					case R.id.nav_6:
+						//logout
 						break;
 
 				}

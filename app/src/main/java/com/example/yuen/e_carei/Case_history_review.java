@@ -17,15 +17,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.yuen.PatientReport;
-import com.example.yuen.e_carei_doctor.activity.IconTextTabsActivity;
-import com.example.yuen.info.androidhive.showpatientlist.PatientList;
+import com.example.yuen.e_carei_login.SQLiteHandler;
+import com.example.yuen.e_carei_login.SessionManager;
+
+import za.co.neilson.alarm.AlarmActivity;
 
 public class Case_history_review extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
     private TextView contentView;
     private int navItemId;
-
+    private SessionManager session;
+    private SQLiteHandler db;
 
     private static final String NAV_ITEM_ID = "nav_index";
 
@@ -40,7 +43,9 @@ public class Case_history_review extends AppCompatActivity {
         toolbar.setTitle("E-care");
         setSupportActionBar(toolbar);
         //set drawer name
-        TextView username = (TextView)findViewById(R.id.name);
+       // TextView username = (TextView)findViewById(R.id.name);
+        //HashMap<String, String> dbuser = db.getUserDetails();
+        //username.setText(dbuser.get("name"));
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         NavigationView view = (NavigationView) findViewById(R.id.navigation_view);
@@ -54,33 +59,28 @@ public class Case_history_review extends AppCompatActivity {
                 {
 
                     case R.id.nav_1:
-                        intent.setClass(Case_history_review.this,Appointmentcreate.class);
-                        //intent .putExtra("name", "Hello B Activity");
-                        startActivity(intent);
                         break;
                     case R.id.nav_2:
-                        intent.setClass(Case_history_review.this,PatientReport.class);
+                        intent.setClass(Case_history_review.this,queueshow.class);
                         //intent .putExtra("name", "Hello B Activity");
                         startActivity(intent);
                         break;
                     case R.id.nav_3:
-                        intent.setClass(Case_history_review.this,PatientList.class);
+                        intent.setClass(Case_history_review.this,Appointmentcreate.class);
                         //intent .putExtra("name", "Hello B Activity");
                         startActivity(intent);
                         break;
                     case R.id.nav_4:
-                        intent.setClass(Case_history_review.this, queueshow.class);
+                        intent.setClass(Case_history_review.this, AlarmActivity.class);
                         startActivity(intent);
                         break;
                     case R.id.nav_5:
                         //用來試appointment list
-                        intent.setClass(Case_history_review.this, IconTextTabsActivity.class);
+                        intent.setClass(Case_history_review.this, PatientReport.class);
                         startActivity(intent);
                         break;
                     case R.id.nav_6:
-                        //用黎試LOGIN, 可以刪
-                        intent.setClass(Case_history_review.this, com.example.yuen.e_carei_login.LoginActivity.class);
-                        startActivity(intent);
+                        //logout
                         break;
 
                 }

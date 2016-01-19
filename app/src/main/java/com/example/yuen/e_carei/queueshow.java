@@ -18,6 +18,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.example.yuen.PatientReport;
 import com.example.yuen.e_carei_app.AppController;
 import com.example.yuen.e_carei_login.SQLiteHandler;
 
@@ -26,6 +27,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+
+import za.co.neilson.alarm.AlarmActivity;
 
 public class queueshow extends AppCompatActivity {
 
@@ -56,25 +59,33 @@ public class queueshow extends AppCompatActivity {
             public boolean onNavigationItemSelected(MenuItem menuItem) {
                 Toast.makeText(queueshow.this, menuItem.getItemId() + " pressed", Toast.LENGTH_LONG).show();
                 Log.d(R.id.nav_1 + "", menuItem.getItemId() + " ");
+                Intent intent = new Intent();
                 switch (menuItem.getItemId()) {
 
-
                     case R.id.nav_1:
-                        Intent intent = new Intent();
                         intent.setClass(queueshow.this, Case_history_review.class);
                         //intent .putExtra("name", "Hello B Activity");
                         startActivity(intent);
                         break;
                     case R.id.nav_2:
-
                         break;
                     case R.id.nav_3:
+                        intent.setClass(queueshow.this, Appointmentcreate.class);
+                        //intent .putExtra("name", "Hello B Activity");
+                        startActivity(intent);
                         break;
                     case R.id.nav_4:
+                        intent.setClass(queueshow.this, AlarmActivity.class);
+                        //intent .putExtra("name", "Hello B Activity");
+                        startActivity(intent);
                         break;
                     case R.id.nav_5:
+                        intent.setClass(queueshow.this, PatientReport.class);
+                        //intent .putExtra("name", "Hello B Activity");
+                        startActivity(intent);
                         break;
                     case R.id.nav_6:
+                        //logout
                         break;
 
                 }

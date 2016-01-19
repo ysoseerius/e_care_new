@@ -16,11 +16,13 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.yuen.e_carei.R;
 import com.example.yuen.e_carei_doctor.fragments.OneFragment;
 import com.example.yuen.e_carei_doctor.fragments.TwoFragment;
+import com.example.yuen.info.androidhive.showpatientlist.PatientList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +32,7 @@ public class IconTextTabsActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
+    private TextView username;
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private int navItemId;
@@ -49,10 +52,12 @@ public class IconTextTabsActivity extends AppCompatActivity {
         toolbar.setTitle("E-care");
         //setSupportActionBar(toolbar);
        // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        TextView username = (TextView)findViewById(R.id.drawer_name);
+
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         NavigationView view = (NavigationView) findViewById(R.id.navigation_view);
-        view.getMenu().getItem(4).setChecked(true);
+        view.getMenu().getItem(1).setChecked(true);
         view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
@@ -61,33 +66,28 @@ public class IconTextTabsActivity extends AppCompatActivity {
                 Intent intent = new Intent();
                 switch (menuItem.getItemId())
                 {
-/*
-                    case R.id.nav_1:
 
-                        break;
-                    case R.id.nav_2:
-                        intent.setClass(Case_history_review.this,PatientReport.class);
+                    case R.id.nav_p1:
+                        intent.setClass(IconTextTabsActivity.this, PatientList.class);
                         //intent .putExtra("name", "Hello B Activity");
                         startActivity(intent);
                         break;
-                    case R.id.nav_3:
-                        intent.setClass(Case_history_review.this,PatientList.class);
+                    case R.id.nav_p2:
+                        intent.setClass(IconTextTabsActivity.this, IconTextTabsActivity.class);
                         //intent .putExtra("name", "Hello B Activity");
                         startActivity(intent);
                         break;
-                    case R.id.nav_4:
-                        break;
-                    case R.id.nav_5:
-                        //用來試appointment list
-                        intent.setClass(Case_history_review.this, IconTextTabsActivity.class);
+                    case R.id.nav_p3:
+                        intent.setClass(IconTextTabsActivity.this, IconTextTabsActivity.class);
+                        //intent .putExtra("name", "Hello B Activity");
                         startActivity(intent);
                         break;
-                    case R.id.nav_6:
-                        //用黎試LOGIN, 可以刪
-                        intent.setClass(Case_history_review.this, com.example.yuen.e_carei_login.LoginActivity.class);
-                        startActivity(intent);
-                        break;
+				/*	case R.id.nav_p4:
+						break;
+					case R.id.nav_p5:
+						break;
 */
+
                 }
                 menuItem.setChecked(true);
                 drawerLayout.closeDrawers();

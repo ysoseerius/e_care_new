@@ -24,9 +24,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.example.yuen.PatientReport;
 import com.example.yuen.e_carei.R;
 import com.example.yuen.e_carei_app.AppController;
+import com.example.yuen.e_carei_doctor.activity.IconTextTabsActivity;
 import com.example.yuen.info.androidhive.showpatientlist.adater.CustomListAdapter;
 import com.example.yuen.info.androidhive.showpatientlist.model.Patient;
 
@@ -73,33 +73,36 @@ public class PatientList extends AppCompatActivity implements SwipeRefreshLayout
 
 		drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		NavigationView view = (NavigationView) findViewById(R.id.navigation_view);
-		view.getMenu().getItem(3).setChecked(true);
+		view.getMenu().getItem(0).setChecked(true);
 		view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
 			@Override
 			public boolean onNavigationItemSelected(MenuItem menuItem) {
 				Toast.makeText(PatientList.this, menuItem.getItemId() + " pressed", Toast.LENGTH_LONG).show();
 				Log.d(R.id.nav_1 + "", menuItem.getItemId() + " ");
+				Intent intent = new Intent();
 				switch (menuItem.getItemId()) {
 
 
-					case R.id.nav_1:
-
-						break;
-					case R.id.nav_2:
-						Intent intent = new Intent();
-						intent.setClass(PatientList.this, PatientReport.class);
+					case R.id.nav_p1:
+						intent.setClass(PatientList.this, PatientList.class);
 						//intent .putExtra("name", "Hello B Activity");
 						startActivity(intent);
 						break;
-					case R.id.nav_3:
-
+					case R.id.nav_p2:
+						intent.setClass(PatientList.this, IconTextTabsActivity.class);
+						//intent .putExtra("name", "Hello B Activity");
+						startActivity(intent);
 						break;
-					case R.id.nav_4:
+					case R.id.nav_p3:
+						intent.setClass(PatientList.this, IconTextTabsActivity.class);
+						//intent .putExtra("name", "Hello B Activity");
+						startActivity(intent);
 						break;
-					case R.id.nav_5:
+				/*	case R.id.nav_p4:
 						break;
-					case R.id.nav_6:
+					case R.id.nav_p5:
 						break;
+*/
 
 				}
 				menuItem.setChecked(true);

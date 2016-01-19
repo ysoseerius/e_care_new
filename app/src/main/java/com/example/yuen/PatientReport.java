@@ -26,8 +26,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.yuen.e_carei.Appointmentcreate;
 import com.example.yuen.e_carei.Case_history_review;
 import com.example.yuen.e_carei.R;
+import com.example.yuen.e_carei.queueshow;
+
+import za.co.neilson.alarm.AlarmActivity;
 
 public class PatientReport extends AppCompatActivity {
 
@@ -63,26 +67,37 @@ public class PatientReport extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
                 Toast.makeText(PatientReport.this, menuItem.getItemId() + " pressed", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent();
                 Log.d(R.id.nav_1 + "", menuItem.getItemId() + " ");
                 switch (menuItem.getItemId()) {
 
-
                     case R.id.nav_1:
-                        Intent intent = new Intent();
                         intent.setClass(PatientReport.this,Case_history_review.class);
                         //intent .putExtra("name", "Hello B Activity");
                         startActivity(intent);
                         break;
                     case R.id.nav_2:
-
+                        intent.setClass(PatientReport.this,queueshow.class);
+                        //intent .putExtra("name", "Hello B Activity");
+                        startActivity(intent);
                         break;
                     case R.id.nav_3:
+                        intent.setClass(PatientReport.this,Appointmentcreate.class);
+                        //intent .putExtra("name", "Hello B Activity");
+                        startActivity(intent);
                         break;
                     case R.id.nav_4:
+                        intent.setClass(PatientReport.this,AlarmActivity.class);
+                        //intent .putExtra("name", "Hello B Activity");
+                        startActivity(intent);
                         break;
                     case R.id.nav_5:
+                        intent.setClass(PatientReport.this,PatientReport.class);
+                        //intent .putExtra("name", "Hello B Activity");
+                        startActivity(intent);
                         break;
                     case R.id.nav_6:
+                        //logout
                         break;
 
                 }

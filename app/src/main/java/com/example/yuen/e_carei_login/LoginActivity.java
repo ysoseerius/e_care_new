@@ -18,6 +18,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.yuen.e_carei.R;
 import com.example.yuen.e_carei_app.AppController;
+import com.example.yuen.info.androidhive.showpatientlist.PatientList;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -197,11 +198,20 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(),
                                 "Hello, " + name2 + " . " + "Welcome back! ", Toast.LENGTH_LONG).show();
 
+                        if(account_type=="2") {
+                            Intent intent = new Intent(LoginActivity.this,
+                                    com.example.yuen.e_carei.Case_history_review.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                        else if(account_type=="1") {
+                            Intent intent = new Intent(LoginActivity.this,
+                                    PatientList.class);
+                            startActivity(intent);
+                            finish();
+                        }
 
-                        Intent intent = new Intent(LoginActivity.this,
-                                com.example.yuen.e_carei.Case_history_review.class);
-                        startActivity(intent);
-                        finish();
+
                     } else {
                         // Error in login. Get the error message
                         String errorMsg = jObj.getString("error_msg");

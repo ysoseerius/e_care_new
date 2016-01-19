@@ -26,6 +26,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
+import com.example.yuen.PatientReport;
 import com.example.yuen.e_carei_app.AppController;
 import com.example.yuen.e_carei_login.SQLiteHandler;
 
@@ -38,6 +39,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
+import za.co.neilson.alarm.AlarmActivity;
 
 public class Appointmentcreate extends AppCompatActivity {
 
@@ -100,25 +103,35 @@ public class Appointmentcreate extends AppCompatActivity {
             public boolean onNavigationItemSelected(MenuItem menuItem) {
                 Toast.makeText(Appointmentcreate.this, menuItem.getItemId() + " pressed", Toast.LENGTH_LONG).show();
                 Log.d(R.id.nav_1 + "", menuItem.getItemId() + " ");
+                Intent intent = new Intent();
                 switch (menuItem.getItemId()) {
-
-
                     case R.id.nav_1:
-                        Intent intent = new Intent();
                         intent.setClass(Appointmentcreate.this, Case_history_review.class);
                         //intent .putExtra("name", "Hello B Activity");
                         startActivity(intent);
                         break;
                     case R.id.nav_2:
-
+                        intent.setClass(Appointmentcreate.this, queueshow.class);
+                        //intent .putExtra("name", "Hello B Activity");
+                        startActivity(intent);
                         break;
                     case R.id.nav_3:
+                        intent.setClass(Appointmentcreate.this, Appointmentcreate.class);
+                        //intent .putExtra("name", "Hello B Activity");
+                        startActivity(intent);
                         break;
                     case R.id.nav_4:
+                        intent.setClass(Appointmentcreate.this, AlarmActivity.class);
+                        //intent .putExtra("name", "Hello B Activity");
+                        startActivity(intent);
                         break;
                     case R.id.nav_5:
+                        intent.setClass(Appointmentcreate.this, PatientReport.class);
+                        //intent .putExtra("name", "Hello B Activity");
+                        startActivity(intent);
                         break;
                     case R.id.nav_6:
+                        //logout
                         break;
 
                 }
@@ -333,10 +346,6 @@ public class Appointmentcreate extends AppCompatActivity {
 
     }
 
-    public void setError(View v, CharSequence s) {
-        TextView name = (TextView) v.findViewById(R.id.name);
-        name.setError(s);
-    }
 
     public static Date addDay(Date date, int days)
     {
