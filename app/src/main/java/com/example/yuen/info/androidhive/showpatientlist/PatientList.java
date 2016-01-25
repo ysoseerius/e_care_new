@@ -94,6 +94,7 @@ public class PatientList extends AppCompatActivity implements SwipeRefreshLayout
 						startActivity(intent);
 						break;
 					case R.id.nav_p3:
+
 						intent.setClass(PatientList.this, IconTextTabsActivity.class);
 						//intent .putExtra("name", "Hello B Activity");
 						startActivity(intent);

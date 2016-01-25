@@ -9,7 +9,6 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
-import com.android.volley.toolbox.NetworkImageView;
 import com.example.yuen.e_carei.R;
 import com.example.yuen.e_carei_app.AppController;
 
@@ -74,5 +73,7 @@ public class CustomListAdapter extends BaseAdapter {
 
         return convertView;
     }
+
+    
 
 }
