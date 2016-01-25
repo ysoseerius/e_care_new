@@ -159,7 +159,7 @@ public class Appointmentcreate extends AppCompatActivity {
         tvInvisibleError_time= (TextView) findViewById(R.id.tvInvisibleError_time);
 
         uid = (TextView)findViewById(R.id.uid_show);
-        name = (TextView)findViewById(R.id.name_show);
+        name = (TextView)findViewById(R.id.Case_number);
         time_label  = (TextView)findViewById(R.id.time_label);
         date_label  = (TextView)findViewById(R.id.date_label);
 

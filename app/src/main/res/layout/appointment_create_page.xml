@@ -65,7 +65,7 @@
                 android:text="name"
                 android:layout_below="@+id/name_label"
                 android:layout_alignParentStart="true"
-                android:id="@+id/name_show" />
+                android:id="@+id/Case_number" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -82,7 +82,7 @@
             android:text="Appointment Type(A:in advance B.today):"
             android:id="@+id/atype_text"
             android:layout_marginTop="30dp"
-            android:layout_below="@+id/name_show"
+            android:layout_below="@+id/Case_number"
             android:layout_alignParentStart="true" />
 
         <Spinner
@@ -118,7 +118,7 @@
                 android:id="@+id/time_label"
                 android:layout_below="@+id/atype_spinner"
                 android:layout_alignParentStart="true"
-                android:layout_alignEnd="@+id/name_show"
+                android:layout_alignEnd="@+id/Case_number"
                 android:layout_marginTop="10dp"
                 android:visibility="gone" />
 

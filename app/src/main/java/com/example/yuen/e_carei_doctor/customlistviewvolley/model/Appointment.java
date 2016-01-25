@@ -9,14 +9,14 @@ public class Appointment {
 	private String consultation_type ;
 	private String appointment_type;
 	private String time;
-
+	private String date;
 	//private double rating;
 	//private ArrayList<String> genre;
 
 	public Appointment() {
 	}
 
-	public Appointment(String name, int aid,String thumbnailUrl, String uid,int queue,String consultation_type,String appointment_type,String time) {
+	public Appointment(String name, int aid,String thumbnailUrl, String uid,int queue,String consultation_type,String appointment_type,String time,String date) {
 		this.name = name;
 		this.thumbnailUrl = thumbnailUrl;
 		this.aid=aid;
@@ -25,6 +25,7 @@ public class Appointment {
 		this.consultation_type =consultation_type;
 		this.appointment_type=appointment_type;
 		this.time=time;
+		this.date=date;
 		//this.year = year;
 		//this.rating = rating;
 		//this.genre = genre;
@@ -92,6 +93,14 @@ public class Appointment {
 
 	public void setTime(String time) {
 		this.time = time;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
 	}
 /*
 	public int getYear() {

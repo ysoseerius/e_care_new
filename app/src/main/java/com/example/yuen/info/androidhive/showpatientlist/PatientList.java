@@ -25,6 +25,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.example.yuen.e_carei.R;
+import com.example.yuen.e_carei.Recordcreate;
 import com.example.yuen.e_carei_app.AppController;
 import com.example.yuen.e_carei_doctor.activity.IconTextTabsActivity;
 import com.example.yuen.info.androidhive.showpatientlist.adater.CustomListAdapter;
@@ -98,9 +99,12 @@ public class PatientList extends AppCompatActivity implements SwipeRefreshLayout
 						//intent .putExtra("name", "Hello B Activity");
 						startActivity(intent);
 						break;
-				/*	case R.id.nav_p4:
+					case R.id.nav_p4:
+						intent.setClass(PatientList.this, Recordcreate.class);
+						//intent .putExtra("name", "Hello B Activity");
+						startActivity(intent);
 						break;
-					case R.id.nav_p5:
+				/*	case R.id.nav_p5:
 						break;
 */
 

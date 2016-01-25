@@ -17,7 +17,7 @@
     <string name="err_msg_title">Emtpy title</string>
     <string name="err_msg_message">Emtpy message</string>
 
-    <!-- PatientList.java -->
+    <!-- Time.java -->
     <string name="patient_list">Patient List</string>
 
     <!--login-->

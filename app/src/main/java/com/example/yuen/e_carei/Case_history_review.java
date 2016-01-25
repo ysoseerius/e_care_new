@@ -80,6 +80,8 @@ public class Case_history_review extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case R.id.nav_6:
+                        intent.setClass(Case_history_review.this, TimeList.class);
+                        startActivity(intent);
                         //logout
                         break;
 

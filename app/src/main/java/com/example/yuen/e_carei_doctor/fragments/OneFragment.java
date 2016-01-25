@@ -187,6 +187,9 @@ public class OneFragment extends Fragment implements SwipeRefreshLayout.OnRefres
                                 //Log.d("i","i:"+i);
                                 //obj= response.getJSONObject(i+1);
                                 //get image url second item
+                                JSONObject objdate = response.getJSONObject(++i);
+                                Log.d("image",objdate.getString("date"));
+                                appointment.setDate("Date:"+objdate.getString("date"));
 
                                     JSONObject objimage = response.getJSONObject(++i);
                                 Log.d("image",objimage.getString("image"));

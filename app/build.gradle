@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.yuen.e_carei"
-        minSdkVersion 21
+        minSdkVersion 19
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -29,4 +29,5 @@ dependencies {
     compile 'com.mcxiaoke.volley:library:1.0.19'
 
     compile 'com.github.traex.rippleeffect:library:1.3'
+
 }

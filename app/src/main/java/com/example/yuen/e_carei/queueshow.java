@@ -111,7 +111,7 @@ public class queueshow extends AppCompatActivity {
         actionBarDrawerToggle.syncState();
 
         uid_show = (TextView)findViewById(R.id.uid_show);
-        name = (TextView)findViewById(R.id.name_show);
+        name = (TextView)findViewById(R.id.Case_number);
         queue_show= (TextView)findViewById(R.id.queue_show);
         db = new SQLiteHandler(getApplicationContext());
 

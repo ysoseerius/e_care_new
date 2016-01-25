@@ -85,6 +85,7 @@ public class CustomListAdapter extends BaseAdapter {
 		TextView atype = (TextView) convertView.findViewById(R.id.atype);
 		TextView time = (TextView) convertView.findViewById(R.id.time);
 		TextView queue = (TextView) convertView.findViewById(R.id.queue);
+		TextView date = (TextView) convertView.findViewById(R.id.date);
 
 		Button addBtn = (Button) convertView.findViewById(R.id.add_btn);
 		ImageButton queueBtn = (ImageButton) convertView.findViewById(R.id.queue_btn);
@@ -116,9 +117,14 @@ public class CustomListAdapter extends BaseAdapter {
 		uid.setText(m.getUid());
 		ctype.setText(m.getCtype());
 		time.setText(String.valueOf(m.getTime()));
+		if("0".equals(String.valueOf(m.getTime())))
+		{
+			time.setVisibility(convertView.GONE);
+		}
 		atype.setText(m.getAtype());
 		queue.setText(String.valueOf(m.getQueue()));
 		queue.setTextColor(Color.parseColor("#125688"));
+		date.setText(m.getDate());
 		/*
 		// rating
 		rating.setText("Rating: " + String.valueOf(m.getRating()));
