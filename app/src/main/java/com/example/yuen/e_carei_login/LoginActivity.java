@@ -62,13 +62,37 @@ public class LoginActivity extends AppCompatActivity {
 
         // Session manager
         session = new SessionManager(getApplicationContext());
+        HashMap<String, String> dbuser = db.getUserDetails();
+        String account_type = dbuser.get("account_type");
 
         // Check if user is already logged in or not
         if (session.isLoggedIn()) {
             // User is already logged in. Take him to main activity
-            Intent intent = new Intent(LoginActivity.this, com.example.yuen.e_carei.Case_history_review.class);
-            startActivity(intent);
-            finish();
+
+//            Log.d("account_type=", account_type);
+//            Log.d("name", dbuser.get("name"));
+//            Log.d("uid", dbuser.get("uid"));
+//            Log.d("hkid", dbuser.get("hkid"));
+//            Log.d("age", dbuser.get("age"));
+//            Log.d("sex", dbuser.get("sex"));
+//            Log.d("image", dbuser.get("image"));
+//            Log.d("phone", dbuser.get("phone"));
+
+            if(account_type.equals("2")) {
+                Intent intent = new Intent(LoginActivity.this,
+                        com.example.yuen.e_carei.Case_history_review.class);
+                startActivity(intent);
+                finish();
+                Log.d("which case?", "2");
+            }
+            else if(account_type.equals("1")) {
+                Intent intent = new Intent(LoginActivity.this,
+                        PatientList.class);
+                startActivity(intent);
+                finish();
+                Log.d("which case?", "1");
+            }
+
         }
 
         // Login button Click Event
@@ -198,13 +222,13 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(),
                                 "Hello, " + name2 + " . " + "Welcome back! ", Toast.LENGTH_LONG).show();
 
-                        if(account_type=="2") {
+                        if(account_type.equals("2")) {
                             Intent intent = new Intent(LoginActivity.this,
                                     com.example.yuen.e_carei.Case_history_review.class);
                             startActivity(intent);
                             finish();
                         }
-                        else if(account_type=="1") {
+                        else if(account_type.equals("1")) {
                             Intent intent = new Intent(LoginActivity.this,
                                     PatientList.class);
                             startActivity(intent);
