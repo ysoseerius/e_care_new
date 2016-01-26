@@ -324,10 +324,19 @@ public class LoginActivity extends AppCompatActivity {
                                 "Hello, " + name2 + " . " + "Welcome back! ", Toast.LENGTH_LONG).show();
 
                         // Launch main activity
-                        Intent intent = new Intent(LoginActivity.this,
-                                com.example.yuen.e_carei.Case_history_review.class);
-                        startActivity(intent);
-                        finish();
+                        if(account_type=="2") {
+                            Intent intent = new Intent(LoginActivity.this,
+                                    com.example.yuen.e_carei.Case_history_review.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                        else if(account_type=="1") {
+                            Intent intent = new Intent(LoginActivity.this,
+                                    PatientList.class);
+                            startActivity(intent);
+                            finish();
+                        }
+
                     } else {
                         // Error in login. Get the error message
                         String errorMsg = jObj.getString("error_msg");

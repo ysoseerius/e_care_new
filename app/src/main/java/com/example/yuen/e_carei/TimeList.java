@@ -1,4 +1,4 @@
-package com.example.yuen.info.androidhive.showpatientlist;
+package com.example.yuen.e_carei;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -13,23 +13,15 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.example.yuen.e_carei.R;
-import com.example.yuen.e_carei.Recordcreate;
+import com.example.yuen.PatientReport;
 import com.example.yuen.e_carei_app.AppController;
-import com.example.yuen.e_carei_doctor.activity.IconTextTabsActivity;
-import com.example.yuen.info.androidhive.showpatientlist.adater.CustomListAdapter;
-import com.example.yuen.info.androidhive.showpatientlist.model.Patient;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,34 +30,33 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import za.co.neilson.alarm.AlarmActivity;
 
-public class PatientList extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
+
+public class TimeList extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
 
 	private DrawerLayout drawerLayout;
 	int navItemId;
-	// Search EditText
-	EditText inputSearch;
-	private Toolbar toolbar;
 	private static final String NAV_ITEM_ID = "nav_index";
 
 	// Log tag
-	private static final String TAG = PatientList.class.getSimpleName();
+	private static final String TAG = TimeList.class.getSimpleName();
 	// initially offset will be 0, later will be updated while parsing the json
 	private int offSet = 0;
 
 	// Movies json url
-	private String url = "http://192.168.43.216/test/db_patientlist.php";
+	private String time_url = "http://192.168.43.216/test/timelist.php";
 	private ProgressDialog pDialog;
-	private List<Patient> patientList = new ArrayList<Patient>();
+	private List<Time> timeList = new ArrayList<Time>();
 	private ListView listView;
-	private CustomListAdapter adapter;
+	private CustomTimeListAdapter adapter;
 
 	private SwipeRefreshLayout swipeRefreshLayout;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.patientlist_listview);
+		setContentView(R.layout.time_listview);
 
 
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -74,40 +65,40 @@ public class PatientList extends AppCompatActivity implements SwipeRefreshLayout
 
 		drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		NavigationView view = (NavigationView) findViewById(R.id.navigation_view);
-		view.getMenu().getItem(0).setChecked(true);
 		view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
 			@Override
 			public boolean onNavigationItemSelected(MenuItem menuItem) {
-				Toast.makeText(PatientList.this, menuItem.getItemId() + " pressed", Toast.LENGTH_LONG).show();
-				Log.d(R.id.nav_1 + "", menuItem.getItemId() + " ");
+				Toast.makeText(TimeList.this, menuItem.getItemId() + " pressed", Toast.LENGTH_LONG).show();
+				Log.d(R.id.nav_1+"", menuItem.getItemId() + " ");
 				Intent intent = new Intent();
-				switch (menuItem.getItemId()) {
+				switch (menuItem.getItemId())
+				{
 
+					case R.id.nav_1:
+						break;
+					case R.id.nav_2:
+						intent.setClass(TimeList.this,queueshow.class);
+						//intent .putExtra("name", "Hello B Activity");
+						startActivity(intent);
+						break;
+					case R.id.nav_3:
+						intent.setClass(TimeList.this,Appointmentcreate.class);
+						//intent .putExtra("name", "Hello B Activity");
+						startActivity(intent);
+						break;
+					case R.id.nav_4:
+						intent.setClass(TimeList.this, AlarmActivity.class);
+						startActivity(intent);
+						break;
+					case R.id.nav_5:
+						//用來試appointment list
+						intent.setClass(TimeList.this, PatientReport.class);
+						startActivity(intent);
+						break;
+					case R.id.nav_6:
 
-					case R.id.nav_p1:
-						intent.setClass(PatientList.this, PatientList.class);
-						//intent .putExtra("name", "Hello B Activity");
-						startActivity(intent);
+						//logout
 						break;
-					case R.id.nav_p2:
-						intent.setClass(PatientList.this, IconTextTabsActivity.class);
-						//intent .putExtra("name", "Hello B Activity");
-						startActivity(intent);
-						break;
-					case R.id.nav_p3:
-
-						intent.setClass(PatientList.this, IconTextTabsActivity.class);
-						//intent .putExtra("name", "Hello B Activity");
-						startActivity(intent);
-						break;
-					case R.id.nav_p4:
-						intent.setClass(PatientList.this, Recordcreate.class);
-						//intent .putExtra("name", "Hello B Activity");
-						startActivity(intent);
-						break;
-				/*	case R.id.nav_p5:
-						break;
-*/
 
 				}
 				menuItem.setChecked(true);
@@ -133,10 +124,10 @@ public class PatientList extends AppCompatActivity implements SwipeRefreshLayout
 
 
 
-		listView = (ListView) findViewById(R.id.list);
+		listView = (ListView) findViewById(R.id.timelist);
 		swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
 
-		adapter = new CustomListAdapter(this, patientList);
+		adapter = new CustomTimeListAdapter(this, timeList);
 		listView.setAdapter(adapter);
 
 		pDialog = new ProgressDialog(this);
@@ -158,55 +149,30 @@ public class PatientList extends AppCompatActivity implements SwipeRefreshLayout
 									@Override
 									public void run() {
 										swipeRefreshLayout.setRefreshing(true);
-										fetchPatients();
+										fetchTimes();
 									}
 								}
 		);
-
-
-		listView.setAdapter(adapter);
-
-		// Click event for single list row
-		listView.setOnItemClickListener(new OnItemClickListener() {
-
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				Toast.makeText(PatientList.this, "row " + position + " was pressed", Toast.LENGTH_LONG).show();
-				Log.d("position","0"+position);
-				switch (position) {
-					case 0:
-						TextView c =(TextView)view.findViewById(R.id.title);
-						String item = c.getText().toString();
-						//Log.d("id",item);
-						break;
-
-					case 1:
-						break;
-				}
-
-			}
-
-		});
 
 	}
 
 	@Override
 	public void onRefresh() {
-		fetchPatients();
+		fetchTimes();
 	}
 	/**
 	 * Fetching movies json by making http call
 	 */
-	private void fetchPatients() {
+	private void fetchTimes() {
 
 		// showing refresh animation before making http call
 		swipeRefreshLayout.setRefreshing(true);
 
 		// appending offset to url
 		//String url = URL_TOP_250 + offSet;
-
+		final int aid_check = 111;
 		// Creating volley request obj
-		JsonArrayRequest movieReq = new JsonArrayRequest(url,
+		JsonArrayRequest movieReq = new JsonArrayRequest(time_url,
 				new Response.Listener<JSONArray>() {
 					@Override
 					public void onResponse(JSONArray response) {
@@ -215,7 +181,7 @@ public class PatientList extends AppCompatActivity implements SwipeRefreshLayout
 						//Log.d("id", "hi") ;
 						// Parsing json
 						// reset the list
-						patientList.clear();
+						timeList.clear();
 						adapter.notifyDataSetChanged();
 
 						for (int i = 0; i < response.length();i++) {
@@ -223,51 +189,22 @@ public class PatientList extends AppCompatActivity implements SwipeRefreshLayout
 								//Log.d("id","hi1") ;
 								//Log.d("i","i:"+i);
 
-								Patient patient = new Patient();
+								Time time = new Time();
 
 								//Log.d("length", "length:" + response.length());
-								JSONObject objid= response.getJSONObject(i);
+
+								JSONObject objaid= response.getJSONObject(i);
+								JSONObject objtime= response.getJSONObject(++i);
+								JSONObject objdate= response.getJSONObject(++i);
 								//get id
-								patient.setUid(objid.getString("uid"));
-
-
-								JSONObject objname= response.getJSONObject(++i);
-								//get id
-								patient.setTitle(objname.getString("name"));
-								//Log.d("i","i:"+i);
-								//obj= response.getJSONObject(i+1);
-								//get image url second item
-								JSONObject objimage= response.getJSONObject(++i);
-								patient.setThumbnailUrl(objimage.getString("image"));
-								//Log.d("i","i:"+i);
-
-
-								//patient.setTitle(obj.getString("id"));
-								//patient.setThumbnailUrl(obj.getString("image"));
-
-
-								// Log.d("id",obj.getString("id")) ;
-								//  Log.d("image",obj.getString("image")) ;
-								/*movie.setRating(((Number) obj.get("rating"))
-										.doubleValue());
-								movie.setYear(obj.getInt("releaseYear"));
-
-								// Genre is json array
-								JSONArray genreArry = obj.getJSONArray("genre");
-								ArrayList<String> genre = new ArrayList<String>();
-								for (int j = 0; j < genreArry.length(); j++) {
-									genre.add((String) genreArry.get(j));
+								final int aid_json=objaid.getInt("appointment_id");
+								Log.d("#"+aid_check+"#","#"+aid_json+"#");
+								if(aid_check==aid_json) {
+									Log.d("hi","asd");
+									time.setTime(objtime.getString("time"));
+									time.setDate(objdate.getString("date"));
+									timeList.add(time);
 								}
-								movie.setGenre(genre);
-								*/
-
-								// adding movie to movies array
-								//if(i%3==1)
-								patientList.add(patient);
-
-								// updating offset value to highest value
-								//if (i >= offSet)
-								//	offSet = i;
 
 							} catch (JSONException e) {
 								e.printStackTrace();

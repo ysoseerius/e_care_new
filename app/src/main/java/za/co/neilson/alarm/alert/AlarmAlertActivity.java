@@ -30,7 +30,17 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.example.yuen.e_carei.R;
+import com.example.yuen.e_carei_app.AppController;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import za.co.neilson.alarm.Alarm;
 
@@ -39,7 +49,7 @@ public class AlarmAlertActivity extends Activity implements OnClickListener {
 
 	private Alarm alarm;
 	private MediaPlayer mediaPlayer;
-
+	private static final String check_intake_med_url = "http://192.168.43.216/test/check_intake_med.php";
 	private StringBuilder answerBuilder = new StringBuilder();
 
 	//private MathProblem mathProblem;
@@ -242,6 +252,7 @@ public class AlarmAlertActivity extends Activity implements OnClickListener {
 			answerBuilder.append(button);
 			answerView.setText(answerBuilder.toString());
 			if (isAnswerCorrect()) {
+
 				alarmActive = false;
 				if (vibrator != null)
 					vibrator.cancel();
@@ -255,7 +266,9 @@ public class AlarmAlertActivity extends Activity implements OnClickListener {
 				} catch (Exception e) {
 
 				}
+
 				this.finish();
+
 			}
 		}
 		if (answerView.getText().length() >= answerString.length()
@@ -277,6 +290,52 @@ public class AlarmAlertActivity extends Activity implements OnClickListener {
 			e.printStackTrace();
 			return false;
 		}
+		if(correct==true)
+		{
+			final String uid = "P001";
+			//final String image=p.getThumbnailUrl();
+
+			StringRequest postRequest = new StringRequest(Request.Method.POST, check_intake_med_url,
+					new Response.Listener<String>() {
+						@Override
+						public void onResponse(String response) {
+							// response
+							Log.d("Response", response.toString());
+						}
+					},
+					new Response.ErrorListener() {
+						@Override
+						public void onErrorResponse(VolleyError error) {
+							// error
+							//Log.d("Error.Response", response);
+						}
+					}
+			) {
+				@Override
+				protected Map<String, String> getParams() {
+					HashMap<String, String> jsonParams = new HashMap<String, String>();
+					//String imagepost = image.substring(image.lastIndexOf('/')+1,image.length());
+					jsonParams.put("uid", uid);
+					Log.d("uid", uid);
+
+					SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+					Date curDate = new Date(System.currentTimeMillis()) ; // 獲取當前時間
+					String date = formatter.format(curDate);
+					jsonParams.put("date",date);
+					Log.d("date",date);
+					formatter = new SimpleDateFormat("HH:mm:ss");
+					curDate = new Date(System.currentTimeMillis()) ; // 獲取當前時間
+					String time = formatter.format(curDate);
+					jsonParams.put("time",time);
+					Log.d("time",time);
+
+					return jsonParams;
+				}
+			};
+
+			AppController.getInstance().addToRequestQueue(postRequest);
+		}
+
 		return correct;
 	}
 
