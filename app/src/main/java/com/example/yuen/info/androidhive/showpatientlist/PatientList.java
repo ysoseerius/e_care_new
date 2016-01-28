@@ -28,6 +28,7 @@ import com.example.yuen.e_carei.R;
 import com.example.yuen.e_carei.Recordcreate;
 import com.example.yuen.e_carei_app.AppController;
 import com.example.yuen.e_carei_doctor.activity.IconTextTabsActivity;
+import com.example.yuen.e_carei_search.customsearchlistvolley.activity.SearchTabsActivity;
 import com.example.yuen.info.androidhive.showpatientlist.adater.CustomListAdapter;
 import com.example.yuen.info.androidhive.showpatientlist.model.Patient;
 
@@ -105,9 +106,11 @@ public class PatientList extends AppCompatActivity implements SwipeRefreshLayout
 						//intent .putExtra("name", "Hello B Activity");
 						startActivity(intent);
 						break;
-				/*	case R.id.nav_p5:
+					case R.id.nav_p5:
+						intent.setClass(PatientList.this, SearchTabsActivity.class);
+						startActivity(intent);
+						//logout
 						break;
-*/
 
 				}
 				menuItem.setChecked(true);

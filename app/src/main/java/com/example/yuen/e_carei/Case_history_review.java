@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -16,9 +17,14 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.toolbox.ImageLoader;
 import com.example.yuen.PatientReport;
+import com.example.yuen.e_carei_app.AppController;
+import com.example.yuen.e_carei_doctor.customlistviewvolley.CirculaireNetworkImageView;
 import com.example.yuen.e_carei_login.SQLiteHandler;
 import com.example.yuen.e_carei_login.SessionManager;
+
+import java.util.HashMap;
 
 import za.co.neilson.alarm.AlarmActivity;
 
@@ -38,10 +44,10 @@ public class Case_history_review extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_case_history_review);
 
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("E-care");
         setSupportActionBar(toolbar);
+
         //set drawer name
        // TextView username = (TextView)findViewById(R.id.name);
         //HashMap<String, String> dbuser = db.getUserDetails();
@@ -53,20 +59,19 @@ public class Case_history_review extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
                 Toast.makeText(Case_history_review.this, menuItem.getItemId() + " pressed", Toast.LENGTH_LONG).show();
-                Log.d(R.id.nav_1+"", menuItem.getItemId() + " ");
+                Log.d(R.id.nav_1 + "", menuItem.getItemId() + " ");
                 Intent intent = new Intent();
-                switch (menuItem.getItemId())
-                {
+                switch (menuItem.getItemId()) {
 
                     case R.id.nav_1:
                         break;
                     case R.id.nav_2:
-                        intent.setClass(Case_history_review.this,queueshow.class);
+                        intent.setClass(Case_history_review.this, queueshow.class);
                         //intent .putExtra("name", "Hello B Activity");
                         startActivity(intent);
                         break;
                     case R.id.nav_3:
-                        intent.setClass(Case_history_review.this,Appointmentcreate.class);
+                        intent.setClass(Case_history_review.this, Appointmentcreate.class);
                         //intent .putExtra("name", "Hello B Activity");
                         startActivity(intent);
                         break;
@@ -103,7 +108,15 @@ public class Case_history_review extends AppCompatActivity {
                 super .onDrawerOpened(drawerView);
             }
         };
-
+        db = new SQLiteHandler(getApplicationContext());
+        HashMap<String, String> dbuser = db.getUserDetails();
+        View header = view.getHeaderView(0);
+        TextView headerName = (TextView) header.findViewById(R.id.drawer_name);
+        String username = dbuser.get("name");
+        headerName.setText(username);
+        ImageLoader imageLoader = AppController.getInstance().getImageLoader();
+        CirculaireNetworkImageView headerphoto = (CirculaireNetworkImageView) header.findViewById(R.id.drawer_thumbnail);
+        headerphoto.setImageUrl("http://192.168.43.216/test/" + dbuser.get("image"), imageLoader);
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
 
@@ -116,7 +129,24 @@ public class Case_history_review extends AppCompatActivity {
             }
         });
     }
+    @Override
+    public void onBackPressed() {
+        if (isNavDrawerOpen()) {
+            closeNavDrawer();
+        } else {
+            super.onBackPressed();
+        }
+    }
 
+    protected boolean isNavDrawerOpen() {
+        return drawerLayout != null && drawerLayout.isDrawerOpen(GravityCompat.START);
+    }
+
+    protected void closeNavDrawer() {
+        if (drawerLayout != null) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
