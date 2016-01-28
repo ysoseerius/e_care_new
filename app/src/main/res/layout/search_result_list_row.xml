@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_row_selector"
+    android:padding="8dp" >
+
+    <com.example.yuen.e_carei_search.customsearchlistvolley.CirculaireNetworkImageView
+        android:id="@+id/thumbnail"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:elevation="8dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dp" />
+
+    <!-- Movie Title -->
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/title"
+        android:gravity="center"
+        android:text="title"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_below="@+id/uid"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/uid"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:gravity="center"
+        android:text="UID"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_alignParentTop="true" />
+
+</RelativeLayout>
