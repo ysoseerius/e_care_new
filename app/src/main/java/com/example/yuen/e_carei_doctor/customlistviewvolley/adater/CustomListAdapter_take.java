@@ -12,12 +12,14 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.NetworkImageView;
+import com.android.volley.toolbox.StringRequest;
 import com.example.yuen.e_carei.R;
 import com.example.yuen.e_carei_app.AppController;
 import com.example.yuen.e_carei_doctor.customlistviewvolley.model.Take_med_list;
@@ -26,7 +28,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class CustomListAdapter_take extends BaseAdapter {
@@ -34,6 +38,7 @@ public class CustomListAdapter_take extends BaseAdapter {
 	private LayoutInflater inflater;
 	private List<Take_med_list> takemedlistItems;
 	private static final String sendurl = "http://192.168.43.216/test/take_notice.php";
+	private static final String deleteurl = "http://192.168.43.216/test/delete_take_med.php";
 	public boolean check =false;
 
 	ImageLoader imageLoader = AppController.getInstance().getImageLoader();
@@ -178,6 +183,40 @@ public class CustomListAdapter_take extends BaseAdapter {
 
 			// Adding request to request queue
 			AppController.getInstance().addToRequestQueue(movieReq);
+
+			StringRequest postRequest = new StringRequest(Request.Method.POST, deleteurl,
+					new Response.Listener<String>()
+					{
+						@Override
+						public void onResponse(String response) {
+							// response
+							Log.d("Response", response.toString());
+						}
+					},
+					new Response.ErrorListener()
+					{
+						@Override
+						public void onErrorResponse(VolleyError error) {
+							// error
+							//Log.d("Error.Response", response);
+						}
+					}
+			) {
+				@Override
+				protected Map<String, String> getParams()
+				{
+					HashMap<String, String> jsonParams = new HashMap<String, String>();
+					//String imagepost = image.substring(image.lastIndexOf('/')+1,image.length());
+					jsonParams.put("uid", check_uid);
+					Log.d("uid", check_uid);
+					//jsonParams.put("image", imagepost);
+					return jsonParams;
+				}
+			};
+			Toast.makeText(arg0.getContext(), check_uid + " , The take med message has sent" , Toast.LENGTH_SHORT).show();
+
+			AppController.getInstance().addToRequestQueue(postRequest);
+
 		}
 
 	}

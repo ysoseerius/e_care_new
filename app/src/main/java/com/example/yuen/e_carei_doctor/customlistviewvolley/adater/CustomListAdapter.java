@@ -176,13 +176,14 @@ public class CustomListAdapter extends BaseAdapter {
 							//Log.d("Error.Response", response);
 						}
 					}
-			) {
+			)
+			{
 				@Override
 				protected Map<String, String> getParams() {
 					HashMap<String, String> jsonParams = new HashMap<String, String>();
 					//String imagepost = image.substring(image.lastIndexOf('/')+1,image.length());
 					jsonParams.put("uid", uid);
-					jsonParams.put("aid", aid + "");
+					//jsonParams.put("aid", aid + "");
 					Log.d("uid", uid);
 					//jsonParams.put("image", imagepost);
 

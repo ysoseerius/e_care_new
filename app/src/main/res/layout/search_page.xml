@@ -38,7 +38,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Input item"
-        />
+        >
+
+    </EditText>
 
     </android.support.design.widget.TextInputLayout>
 
@@ -50,6 +52,18 @@
         android:background="@color/colorPrimary"
         android:textColor="@android:color/white"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        />
+
+    <ImageButton
+        android:id="@+id/btnStartVoiceInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/search_icon"
+        android:layout_below="@+id/search_spinner"
+        android:layout_alignParentEnd="true"
+        android:layout_alignBottom="@+id/input_layout_search"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/transparent"/>
 
 </RelativeLayout>
