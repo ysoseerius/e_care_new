@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.android.volley.toolbox.ImageLoader;
 import com.example.yuen.PatientReport;
 import com.example.yuen.e_carei_app.AppController;
+import com.example.yuen.e_carei_app.CaseReviewDetail;
 import com.example.yuen.e_carei_doctor.customlistviewvolley.CirculaireNetworkImageView;
 import com.example.yuen.e_carei_login.SQLiteHandler;
 import com.example.yuen.e_carei_login.SessionManager;
@@ -64,6 +65,9 @@ public class Case_history_review extends AppCompatActivity {
                 switch (menuItem.getItemId()) {
 
                     case R.id.nav_1:
+                        intent.setClass(Case_history_review.this, CaseReviewDetail.class);
+                        //intent .putExtra("name", "Hello B Activity");
+                        startActivity(intent);
                         break;
                     case R.id.nav_2:
                         intent.setClass(Case_history_review.this, queueshow.class);

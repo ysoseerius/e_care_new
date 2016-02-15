@@ -1,12 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.example.yuen.e_carei.Case_history_review">
 
-    <ImageView
+    <android.support.v4.widget.DrawerLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <!-- your content layout -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <android.support.design.widget.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/AppTheme.AppBarOverlay">
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="?attr/colorPrimary"
+                    app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+            </android.support.design.widget.AppBarLayout>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.android.volley.toolbox.NetworkImageView
         android:src="@drawable/hi"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:id="@+id/imageView2"
+        android:id="@+id/photo"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
 
@@ -14,8 +51,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/imageView2"
-        android:layout_alignBottom="@+id/imageView2"
+        android:layout_toEndOf="@+id/photo"
+        android:layout_alignBottom="@+id/photo"
         android:id="@+id/relativeLayout">
 
 
@@ -46,9 +83,9 @@
             android:layout_height="wrap_content"
             android:text="Chan Tai Man"
             android:textSize="25sp"
-            android:id="@+id/nameResult"
+            android:id="@+id/name_show"
             android:paddingBottom="10dp"
-            android:layout_above="@+id/idResult"
+            android:layout_above="@+id/uid_show"
             android:layout_toEndOf="@+id/textView2" />
 
         <TextView
@@ -56,7 +93,7 @@
             android:layout_height="wrap_content"
             android:text="N001"
             android:textSize="25sp"
-            android:id="@+id/idResult"
+            android:id="@+id/uid_show"
             android:layout_below="@+id/textView2"
             android:layout_toEndOf="@+id/idTag" />
     </RelativeLayout>
@@ -64,7 +101,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/imageView2"
+        android:layout_below="@+id/photo"
         android:layout_alignParentStart="true">
 
         <TextView
@@ -187,4 +224,27 @@
     </RelativeLayout>
 
 
-</RelativeLayout>
+        </RelativeLayout>
+
+        </LinearLayout>
+
+        <android.support.design.widget.NavigationView
+            android:id="@+id/navigation_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            app:headerLayout="@layout/drawer_header"
+            app:menu="@menu/drawer" />
+
+    </android.support.v4.widget.DrawerLayout>
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@android:drawable/ic_dialog_email" />
+
+</android.support.design.widget.CoordinatorLayout>
