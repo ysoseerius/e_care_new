@@ -24,10 +24,12 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.example.yuen.PatientReport;
 import com.example.yuen.e_carei_app.AppController;
+import com.example.yuen.e_carei_doctor.customlistviewvolley.CirculaireNetworkImageView;
 import com.example.yuen.e_carei_login.SQLiteHandler;
 
 import org.json.JSONArray;
@@ -153,6 +155,15 @@ public class Appointmentcreate extends AppCompatActivity {
             }
         };
 
+        db = new SQLiteHandler(getApplicationContext());
+        HashMap<String, String> dbuser = db.getUserDetails();
+        View header = view.getHeaderView(0);
+        TextView headerName = (TextView) header.findViewById(R.id.drawer_name);
+        String username = dbuser.get("name");
+        headerName.setText(username);
+        ImageLoader imageLoader = AppController.getInstance().getImageLoader();
+        CirculaireNetworkImageView headerphoto = (CirculaireNetworkImageView) header.findViewById(R.id.drawer_thumbnail);
+        headerphoto.setImageUrl("http://192.168.43.216/test/" + dbuser.get("image"), imageLoader);
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
 
@@ -163,12 +174,8 @@ public class Appointmentcreate extends AppCompatActivity {
         time_label  = (TextView)findViewById(R.id.time_label);
         date_label  = (TextView)findViewById(R.id.date_label);
 
-        db = new SQLiteHandler(getApplicationContext());
-
-        HashMap<String, String> dbuser = db.getUserDetails();
-
-        //uid.setText(dbuser.get("uid"));
-        //naem.setText(dbuser.get("name"));
+        uid.setText(dbuser.get("uid"));
+        name.setText(username);
 
         btnSend = (Button) findViewById(R.id.btn_send);
         mContext = this.getApplicationContext();

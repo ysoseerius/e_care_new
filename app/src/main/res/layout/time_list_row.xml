@@ -28,7 +28,7 @@
         android:layout_alignParentEnd="true" />
     <!--Not in use
 
-    
+
 
     <TextView
         android:id="@+id/genre"

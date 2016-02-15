@@ -125,12 +125,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="name"
+                android:text="0"
                 android:textSize="72dp"
                 android:textColor="@color/colorPrimary"
                 android:id="@+id/queue_show"
                 android:layout_centerVertical="true"
-                android:layout_toEndOf="@+id/date_label" />
+                android:layout_toEndOf="@+id/textView4" />
 
         </RelativeLayout>
 </LinearLayout>

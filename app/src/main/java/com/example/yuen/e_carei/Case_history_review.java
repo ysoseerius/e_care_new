@@ -176,7 +176,15 @@ public class Case_history_review extends Activity {
                 super .onDrawerOpened(drawerView);
             }
         };
-
+        db = new SQLiteHandler(getApplicationContext());
+        HashMap<String, String> dbuser = db.getUserDetails();
+        View header = view.getHeaderView(0);
+        TextView headerName = (TextView) header.findViewById(R.id.drawer_name);
+        String username = dbuser.get("name");
+        headerName.setText(username);
+        ImageLoader imageLoader = AppController.getInstance().getImageLoader();
+        CirculaireNetworkImageView headerphoto = (CirculaireNetworkImageView) header.findViewById(R.id.drawer_thumbnail);
+        headerphoto.setImageUrl("http://192.168.43.216/test/" + dbuser.get("image"), imageLoader);
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
 

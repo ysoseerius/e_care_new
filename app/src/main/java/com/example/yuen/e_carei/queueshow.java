@@ -17,9 +17,11 @@ import android.widget.Toast;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.example.yuen.PatientReport;
 import com.example.yuen.e_carei_app.AppController;
+import com.example.yuen.e_carei_doctor.customlistviewvolley.CirculaireNetworkImageView;
 import com.example.yuen.e_carei_login.SQLiteHandler;
 
 import org.json.JSONArray;
@@ -107,6 +109,15 @@ public class queueshow extends AppCompatActivity {
             }
         };
 
+        db = new SQLiteHandler(getApplicationContext());
+        HashMap<String, String> dbuser = db.getUserDetails();
+        View header = view.getHeaderView(0);
+        TextView headerName = (TextView) header.findViewById(R.id.drawer_name);
+        String username = dbuser.get("name");
+        headerName.setText(username);
+        ImageLoader imageLoader = AppController.getInstance().getImageLoader();
+        CirculaireNetworkImageView headerphoto = (CirculaireNetworkImageView) header.findViewById(R.id.drawer_thumbnail);
+        headerphoto.setImageUrl("http://192.168.43.216/test/" + dbuser.get("image"), imageLoader);
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
 
@@ -115,10 +126,8 @@ public class queueshow extends AppCompatActivity {
         queue_show= (TextView)findViewById(R.id.queue_show);
         db = new SQLiteHandler(getApplicationContext());
 
-        HashMap<String, String> dbuser = db.getUserDetails();
-
-        //uid.setText(dbuser.get("uid"));
-        //name.setText(dbuser.get("name"));
+        uid_show.setText(dbuser.get("uid"));
+        name.setText(dbuser.get("name"));
 
         //check to see the slot is full or not.1. add data to db and calculate the no of data in the db 2. If >5 , delete it
         JsonArrayRequest movieReq = new JsonArrayRequest(queue_show_url,
@@ -139,17 +148,21 @@ public class queueshow extends AppCompatActivity {
                                 //get id
                                 //Log.d("length", "length:" + response.length());
                                 JSONObject objuid = response.getJSONObject(i);
+                                String uid_json = objuid.getString("uid");
                                 //get id
-                                if(uid.equals(objuid.getString("uid")))
+                                if(uid.equals(uid_json))
                                 uid_show.setText(objuid.getString("uid"));
 
                                 JSONObject objqueue= response.getJSONObject(++i);
-                                //get id
-                                if(uid.equals(objuid.getString("uid"))) {
+                                Log.d(uid,uid_json);
+                                Log.d("True",uid.equals(uid_json) + "");
+                                if(uid.equals(uid_json)) {
                                     queue_show.setText(objqueue.getString("queue"));
                                 }
                                 else
-                                    queue_show.setText("0");
+                                {
+
+                                }
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
