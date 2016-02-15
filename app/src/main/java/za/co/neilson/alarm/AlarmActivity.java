@@ -32,14 +32,20 @@ import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.toolbox.ImageLoader;
 import com.example.yuen.PatientReport;
 import com.example.yuen.e_carei.Appointmentcreate;
 import com.example.yuen.e_carei.Case_history_review;
 import com.example.yuen.e_carei.R;
 import com.example.yuen.e_carei.queueshow;
+import com.example.yuen.e_carei_app.AppController;
+import com.example.yuen.e_carei_doctor.customlistviewvolley.CirculaireNetworkImageView;
+import com.example.yuen.e_carei_login.SQLiteHandler;
 
+import java.util.HashMap;
 import java.util.List;
 
 import za.co.neilson.alarm.database.Database;
@@ -53,6 +59,7 @@ public class AlarmActivity extends BaseActivity {
 	private DrawerLayout drawerLayout;
 	int navItemId;
 	private Toolbar toolbar;
+	private SQLiteHandler db;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -122,6 +129,15 @@ public class AlarmActivity extends BaseActivity {
 			}
 		};
 
+		db = new SQLiteHandler(getApplicationContext());
+		HashMap<String, String> dbuser = db.getUserDetails();
+		View header = view.getHeaderView(0);
+		TextView headerName = (TextView) header.findViewById(R.id.drawer_name);
+		String username = dbuser.get("name");
+		headerName.setText(username);
+		ImageLoader imageLoader = AppController.getInstance().getImageLoader();
+		CirculaireNetworkImageView headerphoto = (CirculaireNetworkImageView) header.findViewById(R.id.drawer_thumbnail);
+		headerphoto.setImageUrl("http://192.168.43.216/test/" + dbuser.get("image"), imageLoader);
 		drawerLayout.setDrawerListener(actionBarDrawerToggle);
 		actionBarDrawerToggle.syncState();
 

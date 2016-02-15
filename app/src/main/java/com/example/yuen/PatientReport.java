@@ -26,10 +26,16 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.toolbox.ImageLoader;
 import com.example.yuen.e_carei.Appointmentcreate;
 import com.example.yuen.e_carei.Case_history_review;
 import com.example.yuen.e_carei.R;
 import com.example.yuen.e_carei.queueshow;
+import com.example.yuen.e_carei_app.AppController;
+import com.example.yuen.e_carei_doctor.customlistviewvolley.CirculaireNetworkImageView;
+import com.example.yuen.e_carei_login.SQLiteHandler;
+
+import java.util.HashMap;
 
 import za.co.neilson.alarm.AlarmActivity;
 
@@ -48,6 +54,7 @@ public class PatientReport extends AppCompatActivity {
     private ArrayAdapter<String> lunchList;
     private Context mContext;
 
+    private SQLiteHandler db;
 
     private String[] em_level = {"Low", "Medium", "High"};
 
@@ -119,6 +126,15 @@ public class PatientReport extends AppCompatActivity {
             }
         };
 
+        db = new SQLiteHandler(getApplicationContext());
+        HashMap<String, String> dbuser = db.getUserDetails();
+        View header = view.getHeaderView(0);
+        TextView headerName = (TextView) header.findViewById(R.id.drawer_name);
+        String username = dbuser.get("name");
+        headerName.setText(username);
+        ImageLoader imageLoader = AppController.getInstance().getImageLoader();
+        CirculaireNetworkImageView headerphoto = (CirculaireNetworkImageView) header.findViewById(R.id.drawer_thumbnail);
+        headerphoto.setImageUrl("http://192.168.43.216/test/" + dbuser.get("image"), imageLoader);
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
 

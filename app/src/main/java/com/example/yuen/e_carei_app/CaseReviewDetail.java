@@ -3,7 +3,9 @@ package com.example.yuen.e_carei_app;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -138,6 +140,19 @@ public class CaseReviewDetail extends AppCompatActivity {
         headerphoto.setImageUrl("http://192.168.43.216/test/" + dbuser.get("image"), imageLoader);
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+                Intent intent = new Intent(CaseReviewDetail.this, TimeList.class);
+                //intent.putExtra("uid", uid);
+                //intent.putExtra("case_number",case_number);
+                startActivity(intent);
+            }
+        });
 
         fetchCase();
 

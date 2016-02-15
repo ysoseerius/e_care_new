@@ -23,9 +23,11 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.StringRequest;
 import com.example.yuen.e_carei_app.AppController;
 import com.example.yuen.e_carei_doctor.activity.IconTextTabsActivity;
+import com.example.yuen.e_carei_doctor.customlistviewvolley.CirculaireNetworkImageView;
 import com.example.yuen.e_carei_login.SQLiteHandler;
 import com.example.yuen.info.androidhive.showpatientlist.PatientList;
 
@@ -112,6 +114,15 @@ public class Recordcreate extends AppCompatActivity {
             }
         };
 
+        db = new SQLiteHandler(getApplicationContext());
+        HashMap<String, String> dbuser = db.getUserDetails();
+        View header = view.getHeaderView(0);
+        TextView headerName = (TextView) header.findViewById(R.id.drawer_name);
+        String username = dbuser.get("name");
+        headerName.setText(username);
+        ImageLoader imageLoader = AppController.getInstance().getImageLoader();
+        CirculaireNetworkImageView headerphoto = (CirculaireNetworkImageView) header.findViewById(R.id.drawer_thumbnail);
+        headerphoto.setImageUrl("http://192.168.43.216/test/" + dbuser.get("image"), imageLoader);
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
 
@@ -128,7 +139,7 @@ public class Recordcreate extends AppCompatActivity {
 
         db = new SQLiteHandler(getApplicationContext());
 
-        HashMap<String, String> dbuser = db.getUserDetails();
+
 
         //uid.setText(dbuser.get("uid"));
         //naem.setText(dbuser.get("name"));

@@ -23,11 +23,13 @@ import android.widget.Toast;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.example.yuen.e_carei.R;
 import com.example.yuen.e_carei.Recordcreate;
 import com.example.yuen.e_carei_app.AppController;
 import com.example.yuen.e_carei_doctor.activity.IconTextTabsActivity;
+import com.example.yuen.e_carei_login.SQLiteHandler;
 import com.example.yuen.e_carei_search.customsearchlistvolley.activity.SearchTabsActivity;
 import com.example.yuen.info.androidhive.showpatientlist.adater.CustomListAdapter;
 import com.example.yuen.info.androidhive.showpatientlist.model.Patient;
@@ -37,6 +39,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -60,6 +63,8 @@ public class PatientList extends AppCompatActivity implements SwipeRefreshLayout
 	private List<Patient> patientList = new ArrayList<Patient>();
 	private ListView listView;
 	private CustomListAdapter adapter;
+
+	private SQLiteHandler db;
 
 	private SwipeRefreshLayout swipeRefreshLayout;
 
@@ -131,10 +136,17 @@ public class PatientList extends AppCompatActivity implements SwipeRefreshLayout
 			}
 		};
 
+		db = new SQLiteHandler(getApplicationContext());
+		HashMap<String, String> dbuser = db.getUserDetails();
+		View header = view.getHeaderView(0);
+		TextView headerName = (TextView) header.findViewById(R.id.drawer_name);
+		String username = dbuser.get("name");
+		headerName.setText(username);
+		ImageLoader imageLoader = AppController.getInstance().getImageLoader();
+		CirculaireNetworkImageView headerphoto = (CirculaireNetworkImageView) header.findViewById(R.id.drawer_thumbnail);
+		headerphoto.setImageUrl("http://192.168.43.216/test/" + dbuser.get("image"), imageLoader);
 		drawerLayout.setDrawerListener(actionBarDrawerToggle);
 		actionBarDrawerToggle.syncState();
-
-
 
 		listView = (ListView) findViewById(R.id.list);
 		swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
