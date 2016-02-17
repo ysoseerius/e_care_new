@@ -1,5 +1,7 @@
 package com.example.yuen.e_carei_search.customsearchlistvolley.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -24,7 +26,9 @@ import com.example.yuen.e_carei.R;
 import com.example.yuen.e_carei_app.AppController;
 import com.example.yuen.e_carei_doctor.activity.IconTextTabsActivity;
 import com.example.yuen.e_carei_doctor.customlistviewvolley.CirculaireNetworkImageView;
+import com.example.yuen.e_carei_login.LoginActivity;
 import com.example.yuen.e_carei_login.SQLiteHandler;
+import com.example.yuen.e_carei_login.SessionManager;
 import com.example.yuen.e_carei_search.customsearchlistvolley.fragments.SearchOneFragment;
 import com.example.yuen.e_carei_search.customsearchlistvolley.fragments.SearchTwoFragment;
 import com.example.yuen.info.androidhive.showpatientlist.PatientList;
@@ -43,6 +47,7 @@ public class SearchTabsActivity extends AppCompatActivity {
     private int navItemId;
 
     private SQLiteHandler db;
+    private SessionManager session;
 
     private int[] tabIcons = {
             R.drawable.search_icon,
@@ -61,9 +66,11 @@ public class SearchTabsActivity extends AppCompatActivity {
         // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         TextView username = (TextView)findViewById(R.id.drawer_name);
 
+        session = new SessionManager(getApplicationContext());
+
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         NavigationView view = (NavigationView) findViewById(R.id.navigation_view);
-        view.getMenu().getItem(1).setChecked(true);
+        view.getMenu().getItem(3).setChecked(true);
         view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
@@ -72,7 +79,6 @@ public class SearchTabsActivity extends AppCompatActivity {
                 Intent intent = new Intent();
                 switch (menuItem.getItemId())
                 {
-
                     case R.id.nav_p1:
                         intent.setClass(SearchTabsActivity.this, PatientList.class);
                         //intent .putExtra("name", "Hello B Activity");
@@ -88,12 +94,41 @@ public class SearchTabsActivity extends AppCompatActivity {
                         //intent .putExtra("name", "Hello B Activity");
                         startActivity(intent);
                         break;
-				/*	case R.id.nav_p4:
-						break;
-					case R.id.nav_p5:
-						break;
-*/
+                    case R.id.nav_p4:
+                        intent.setClass(SearchTabsActivity.this, SearchTabsActivity.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.nav_p5:
+                        //logout
+                        AlertDialog.Builder builder = new AlertDialog.Builder(SearchTabsActivity.this);
+                        //Uncomment the below code to Set the message and title from the strings.xml file
+                        //builder.setMessage(R.string.dialog_message) .setTitle(R.string.dialog_title);
 
+                        //Setting message manually and performing action on button click
+                        builder.setMessage("Do you want to close this application ?")
+                                .setCancelable(false)
+                                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        session.setLogin(false);
+                                        db.deleteUsers();
+                                        final Intent intent_logout = new Intent(SearchTabsActivity.this, LoginActivity.class);
+                                        startActivity(intent_logout);
+                                        finish();
+                                    }
+                                })
+                                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        //  Action for 'NO' Button
+                                        dialog.cancel();
+                                    }
+                                });
+
+                        //Creating dialog box
+                        AlertDialog alert = builder.create();
+                        //Setting the title manually
+                        alert.setTitle("AlertDialogExample");
+                        alert.show();
+                        break;
                 }
                 menuItem.setChecked(true);
                 drawerLayout.closeDrawers();

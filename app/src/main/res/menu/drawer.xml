@@ -4,27 +4,27 @@
         <item
             android:id="@+id/nav_1"
             android:checked="true"
-            android:icon="@drawable/hi"
+            android:icon="@drawable/appo_list"
             android:title="Case Review"/>
         <item
             android:id="@+id/nav_2"
-            android:icon="@drawable/hi"
+            android:icon="@drawable/icon_queue"
             android:title="Queue state"/>
         <item
             android:id="@+id/nav_3"
-            android:icon="@drawable/hi"
+            android:icon="@drawable/add"
             android:title="Create appointemnt"/>
         <item
             android:id="@+id/nav_4"
-            android:icon="@drawable/hi"
+            android:icon="@drawable/alarm"
             android:title="Alarm"/>
         <item
             android:id="@+id/nav_5"
-            android:icon="@drawable/hi"
+            android:icon="@drawable/report"
             android:title="Report"/>
         <item
             android:id="@+id/nav_6"
-            android:icon="@drawable/hi"
+            android:icon="@drawable/logout"
             android:title="Logout"/>
     </group>
 </menu>

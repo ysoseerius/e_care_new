@@ -1,6 +1,7 @@
 package com.example.yuen.e_carei_doctor.fragments;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -10,13 +11,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.example.yuen.e_carei.Case_history_review;
 import com.example.yuen.e_carei.R;
 import com.example.yuen.e_carei_app.AppController;
 import com.example.yuen.e_carei_doctor.customlistviewvolley.adater.CustomListAdapter;
@@ -46,6 +47,9 @@ public class OneFragment extends Fragment implements SwipeRefreshLayout.OnRefres
     private CustomListAdapter listadapter;
 
     private SwipeRefreshLayout swipeRefreshLayout;
+    private ArrayList arlist_uid=new ArrayList();
+    private ArrayList arlist_name=new ArrayList();
+    private ArrayList arlist_photo=new ArrayList();
 
     public OneFragment() {
         // Required empty public constructor
@@ -99,16 +103,17 @@ public class OneFragment extends Fragment implements SwipeRefreshLayout.OnRefres
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                Toast.makeText(getActivity(), "row " + position + " was pressed", Toast.LENGTH_LONG).show();
-                switch (position) {
-                    case 0:
-                        TextView c =(TextView)view.findViewById(R.id.title);
-                        String item = c.getText().toString();
-                        Log.d("id", item);
-                        break;
-                    case 1:
-                        break;
-                }
+                String saved_image = arlist_photo.get(position).toString().substring(26);
+                String saved_name = arlist_name.get(position).toString();
+                String saved_uid = arlist_uid.get(position).toString();
+                Log.d(saved_image,saved_name);
 
+                Intent i = new Intent();
+                i.setClass(getActivity(), Case_history_review.class);
+                i.putExtra("uid", saved_uid);
+                i.putExtra("name",saved_name);
+                i.putExtra("image",saved_image);
+                startActivity(i);
             }
 
         });
@@ -159,13 +164,13 @@ public class OneFragment extends Fragment implements SwipeRefreshLayout.OnRefres
                                     JSONObject objname= response.getJSONObject(i);
                                     //get id
                                 Log.d("name", objname.getString("name"));
-                                    appointment.setName("Name:"+objname.getString("name"));
-
+                                    appointment.setName("Name:" + objname.getString("name"));
+                                    arlist_name.add(objname.getString("name"));
 
                                     JSONObject objuid = response.getJSONObject(++i);
                                 Log.d("uid",objuid.getString("uid"));
-                                    appointment.setUid("UID:"+objuid.getString("uid"));
-
+                                appointment.setUid("UID:"+objuid.getString("uid"));
+                                    arlist_uid.add(objuid.getString("uid"));
 
                                     JSONObject objatype = response.getJSONObject(++i);
                                 Log.d("atype",objatype.getString("appointment_type"));
@@ -194,6 +199,7 @@ public class OneFragment extends Fragment implements SwipeRefreshLayout.OnRefres
                                     JSONObject objimage = response.getJSONObject(++i);
                                 Log.d("image",objimage.getString("image"));
                                     appointment.setThumbnailUrl(objimage.getString("image"));
+                                arlist_photo.add(objimage.getString("image"));
                                 //Log.d("i","i:"+i);
 
                                 //patient.setTitle(obj.getString("id"));

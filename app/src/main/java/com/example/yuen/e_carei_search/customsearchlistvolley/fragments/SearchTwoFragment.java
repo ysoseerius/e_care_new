@@ -19,6 +19,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.example.yuen.e_carei.Case_history_review;
 import com.example.yuen.e_carei.R;
 import com.example.yuen.e_carei_app.AppController;
 import com.example.yuen.e_carei_search.customsearchlistvolley.adater.CustomSearchListAdapter;
@@ -51,6 +52,7 @@ public class SearchTwoFragment extends Fragment implements SwipeRefreshLayout.On
     private int num_search_result = 0;
     private Toolbar toolbar;
     private SwipeRefreshLayout swipeRefreshLayout;
+    private ArrayList arlist=new ArrayList();
 
     public SearchTwoFragment() {
         // Required empty public constructor
@@ -104,17 +106,19 @@ public class SearchTwoFragment extends Fragment implements SwipeRefreshLayout.On
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getContext(), "row " + position + " was pressed", Toast.LENGTH_LONG).show();
-                switch (position) {
-                    case 0:
-                        TextView c = (TextView) view.findViewById(R.id.title);
-                        String item = c.getText().toString();
-                        Log.d("id", item);
-                        break;
-
-                    case 1:
-                        break;
-                }
-
+                    TextView take_title = (TextView) view.findViewById(R.id.title);
+                    TextView uid = (TextView) view.findViewById(R.id.uid);
+                    String saved_name= take_title.getText().toString();
+                    String saved_uid= uid.getText().toString();
+                    //取得arraylist內容
+                    String saved_image = arlist.get(position).toString().substring(26);
+                    Intent i = new Intent();
+                    i.setClass(getActivity(), Case_history_review.class);
+                    i.putExtra("uid", saved_uid);
+                    i.putExtra("name", saved_name);
+                    Log.d("name_image",saved_image);
+                    i.putExtra("image", saved_image);
+                    startActivity(i);
             }
 
         });
@@ -203,6 +207,7 @@ public class SearchTwoFragment extends Fragment implements SwipeRefreshLayout.On
                                         searchlist.setName(objname.getString("name"));
                                         Log.d("hkid", objhkid.getString("hkid"));
                                         searchlist.setThumbnailUrl(objimage.getString("image"));
+                                        arlist.add(objimage.getString("image"));
                                         num_search_result++;
                                         SearchList.add(searchlist);
                                 }

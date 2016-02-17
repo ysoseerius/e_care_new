@@ -1,6 +1,8 @@
 package com.example.yuen;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -33,7 +35,9 @@ import com.example.yuen.e_carei.R;
 import com.example.yuen.e_carei.queueshow;
 import com.example.yuen.e_carei_app.AppController;
 import com.example.yuen.e_carei_doctor.customlistviewvolley.CirculaireNetworkImageView;
+import com.example.yuen.e_carei_login.LoginActivity;
 import com.example.yuen.e_carei_login.SQLiteHandler;
+import com.example.yuen.e_carei_login.SessionManager;
 
 import java.util.HashMap;
 
@@ -55,6 +59,9 @@ public class PatientReport extends AppCompatActivity {
     private Context mContext;
 
     private SQLiteHandler db;
+    private SessionManager session;
+    private String username;
+    private String uid;
 
     private String[] em_level = {"Low", "Medium", "High"};
 
@@ -67,9 +74,12 @@ public class PatientReport extends AppCompatActivity {
         toolbar.setTitle("E-care");
         setSupportActionBar(toolbar);
 
+        db = new SQLiteHandler(getApplicationContext());
+        session = new SessionManager(getApplicationContext());
+
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         NavigationView view = (NavigationView) findViewById(R.id.navigation_view);
-        view.getMenu().getItem(1).setChecked(true);
+        view.getMenu().getItem(4).setChecked(true);
         view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
@@ -77,36 +87,62 @@ public class PatientReport extends AppCompatActivity {
                 Intent intent = new Intent();
                 Log.d(R.id.nav_1 + "", menuItem.getItemId() + " ");
                 switch (menuItem.getItemId()) {
-
                     case R.id.nav_1:
                         intent.setClass(PatientReport.this,Case_history_review.class);
-                        //intent .putExtra("name", "Hello B Activity");
                         startActivity(intent);
                         break;
                     case R.id.nav_2:
-                        intent.setClass(PatientReport.this,queueshow.class);
+                        intent.setClass(PatientReport.this, queueshow.class);
                         //intent .putExtra("name", "Hello B Activity");
                         startActivity(intent);
                         break;
                     case R.id.nav_3:
-                        intent.setClass(PatientReport.this,Appointmentcreate.class);
+                        intent.setClass(PatientReport.this, Appointmentcreate.class);
                         //intent .putExtra("name", "Hello B Activity");
                         startActivity(intent);
                         break;
                     case R.id.nav_4:
-                        intent.setClass(PatientReport.this,AlarmActivity.class);
+                        intent.setClass(PatientReport.this, AlarmActivity.class);
                         //intent .putExtra("name", "Hello B Activity");
                         startActivity(intent);
                         break;
                     case R.id.nav_5:
-                        intent.setClass(PatientReport.this,PatientReport.class);
+                        intent.setClass(PatientReport.this, PatientReport.class);
                         //intent .putExtra("name", "Hello B Activity");
                         startActivity(intent);
                         break;
                     case R.id.nav_6:
                         //logout
-                        break;
+                        AlertDialog.Builder builder = new AlertDialog.Builder(PatientReport.this);
+                        //Uncomment the below code to Set the message and title from the strings.xml file
+                        //builder.setMessage(R.string.dialog_message) .setTitle(R.string.dialog_title);
 
+                        //Setting message manually and performing action on button click
+                        builder.setMessage("Do you want to close this application ?")
+                                .setCancelable(false)
+                                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        session.setLogin(false);
+                                        db.deleteUsers();
+                                        final Intent intent_logout = new Intent(PatientReport.this, LoginActivity.class);
+                                        startActivity(intent_logout);
+                                        finish();
+                                    }
+                                })
+                                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        //  Action for 'NO' Button
+                                        dialog.cancel();
+                                    }
+                                });
+
+                        //Creating dialog box
+                        AlertDialog alert = builder.create();
+                        //Setting the title manually
+                        alert.setTitle("AlertDialogExample");
+                        alert.show();
+
+                        break;
                 }
                 menuItem.setChecked(true);
                 drawerLayout.closeDrawers();
@@ -130,7 +166,8 @@ public class PatientReport extends AppCompatActivity {
         HashMap<String, String> dbuser = db.getUserDetails();
         View header = view.getHeaderView(0);
         TextView headerName = (TextView) header.findViewById(R.id.drawer_name);
-        String username = dbuser.get("name");
+        username = dbuser.get("name");
+        uid = dbuser.get("uid");
         headerName.setText(username);
         ImageLoader imageLoader = AppController.getInstance().getImageLoader();
         CirculaireNetworkImageView headerphoto = (CirculaireNetworkImageView) header.findViewById(R.id.drawer_thumbnail);
@@ -149,6 +186,8 @@ public class PatientReport extends AppCompatActivity {
         btnSend = (Button) findViewById(R.id.btn_send);
         mContext = this.getApplicationContext();
         spinner = (Spinner)findViewById(R.id.time_spinner);
+
+        inputEmail.setText("ng2b30@hotmail.com");
         lunchList = new ArrayAdapter<String>(PatientReport.this, android.R.layout.simple_spinner_item, em_level);
         spinner.setAdapter(lunchList);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -229,7 +268,7 @@ public class PatientReport extends AppCompatActivity {
 
         String to = inputEmail.getText().toString();
         String title = inputTitle.getText().toString();
-        String message = "Emergency Level: " + spinner.getSelectedItem().toString() + "\n" + "Detail : " + inputMessage.getText().toString();
+        String message = "Uid: "+ uid +"\n" + "Username: " + username + "\n" +"Emergency Level: " + spinner.getSelectedItem().toString() + "\n" + "Detail : " + inputMessage.getText().toString();
 
         Intent email = new Intent(Intent.ACTION_SEND);
         email.putExtra(Intent.EXTRA_EMAIL, new String[]{to});
@@ -242,6 +281,9 @@ public class PatientReport extends AppCompatActivity {
         email.setType("message/rfc822");
 
         startActivity(Intent.createChooser(email, "Choose an Email client :"));
+        Toast.makeText(PatientReport.this, "Report has sent to the doctor", Toast.LENGTH_LONG).show();
+        finish();
+
     }
 
     private boolean validateEmail() {

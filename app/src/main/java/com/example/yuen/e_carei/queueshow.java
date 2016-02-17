@@ -1,5 +1,7 @@
 package com.example.yuen.e_carei;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -22,7 +24,9 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.example.yuen.PatientReport;
 import com.example.yuen.e_carei_app.AppController;
 import com.example.yuen.e_carei_doctor.customlistviewvolley.CirculaireNetworkImageView;
+import com.example.yuen.e_carei_login.LoginActivity;
 import com.example.yuen.e_carei_login.SQLiteHandler;
+import com.example.yuen.e_carei_login.SessionManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -41,6 +45,8 @@ public class queueshow extends AppCompatActivity {
     private static final String NAV_ITEM_ID = "nav_index";
 
     private SQLiteHandler db;
+    private SessionManager session;
+
     private TextView uid_show , name ,queue_show;
 
 
@@ -52,6 +58,8 @@ public class queueshow extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("E-care");
         setSupportActionBar(toolbar);
+
+        session = new SessionManager(getApplicationContext());
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         NavigationView view = (NavigationView) findViewById(R.id.navigation_view);
@@ -65,11 +73,13 @@ public class queueshow extends AppCompatActivity {
                 switch (menuItem.getItemId()) {
 
                     case R.id.nav_1:
-                        intent.setClass(queueshow.this, Case_history_review.class);
-                        //intent .putExtra("name", "Hello B Activity");
+                        intent.setClass(queueshow.this,Case_history_review.class);
                         startActivity(intent);
                         break;
                     case R.id.nav_2:
+                        intent.setClass(queueshow.this, queueshow.class);
+                        //intent .putExtra("name", "Hello B Activity");
+                        startActivity(intent);
                         break;
                     case R.id.nav_3:
                         intent.setClass(queueshow.this, Appointmentcreate.class);
@@ -88,6 +98,35 @@ public class queueshow extends AppCompatActivity {
                         break;
                     case R.id.nav_6:
                         //logout
+                        AlertDialog.Builder builder = new AlertDialog.Builder(queueshow.this);
+                        //Uncomment the below code to Set the message and title from the strings.xml file
+                        //builder.setMessage(R.string.dialog_message) .setTitle(R.string.dialog_title);
+
+                        //Setting message manually and performing action on button click
+                        builder.setMessage("Do you want to close this application ?")
+                                .setCancelable(false)
+                                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        session.setLogin(false);
+                                        db.deleteUsers();
+                                        final Intent intent_logout = new Intent(queueshow.this, LoginActivity.class);
+                                        startActivity(intent_logout);
+                                        finish();
+                                    }
+                                })
+                                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        //  Action for 'NO' Button
+                                        dialog.cancel();
+                                    }
+                                });
+
+                        //Creating dialog box
+                        AlertDialog alert = builder.create();
+                        //Setting the title manually
+                        alert.setTitle("AlertDialogExample");
+                        alert.show();
+
                         break;
 
                 }

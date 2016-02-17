@@ -56,7 +56,6 @@ public class CustomListAdapter extends BaseAdapter {
 
         // getting movie data for the row
         Patientlist m = caseItems.get(position);
-
         no_of_case_history.setText("Case History " + m.getNo_of_case_history());
         date_of_case_history.setText(m.getDate_of_case_history());
 

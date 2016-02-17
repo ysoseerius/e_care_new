@@ -1,6 +1,8 @@
 package com.example.yuen.e_carei;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -30,7 +32,9 @@ import com.android.volley.toolbox.StringRequest;
 import com.example.yuen.PatientReport;
 import com.example.yuen.e_carei_app.AppController;
 import com.example.yuen.e_carei_doctor.customlistviewvolley.CirculaireNetworkImageView;
+import com.example.yuen.e_carei_login.LoginActivity;
 import com.example.yuen.e_carei_login.SQLiteHandler;
+import com.example.yuen.e_carei_login.SessionManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -62,6 +66,7 @@ public class Appointmentcreate extends AppCompatActivity {
     private Context mContext;
     private String atype_get;
     private String time_get="0";
+    private SessionManager session;
 
     Date today = new Date();
 
@@ -97,9 +102,11 @@ public class Appointmentcreate extends AppCompatActivity {
         toolbar.setTitle("E-care");
         setSupportActionBar(toolbar);
 
+        session = new SessionManager(getApplicationContext());
+
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         NavigationView view = (NavigationView) findViewById(R.id.navigation_view);
-        view.getMenu().getItem(1).setChecked(true);
+        view.getMenu().getItem(2).setChecked(true);
         view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
@@ -108,8 +115,7 @@ public class Appointmentcreate extends AppCompatActivity {
                 Intent intent = new Intent();
                 switch (menuItem.getItemId()) {
                     case R.id.nav_1:
-                        intent.setClass(Appointmentcreate.this, Case_history_review.class);
-                        //intent .putExtra("name", "Hello B Activity");
+                        intent.setClass(Appointmentcreate.this,Case_history_review.class);
                         startActivity(intent);
                         break;
                     case R.id.nav_2:
@@ -134,6 +140,35 @@ public class Appointmentcreate extends AppCompatActivity {
                         break;
                     case R.id.nav_6:
                         //logout
+                        AlertDialog.Builder builder = new AlertDialog.Builder(Appointmentcreate.this);
+                        //Uncomment the below code to Set the message and title from the strings.xml file
+                        //builder.setMessage(R.string.dialog_message) .setTitle(R.string.dialog_title);
+
+                        //Setting message manually and performing action on button click
+                        builder.setMessage("Do you want to close this application ?")
+                                .setCancelable(false)
+                                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        session.setLogin(false);
+                                        db.deleteUsers();
+                                        final Intent intent_logout = new Intent(Appointmentcreate.this, LoginActivity.class);
+                                        startActivity(intent_logout);
+                                        finish();
+                                    }
+                                })
+                                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        //  Action for 'NO' Button
+                                        dialog.cancel();
+                                    }
+                                });
+
+                        //Creating dialog box
+                        AlertDialog alert = builder.create();
+                        //Setting the title manually
+                        alert.setTitle("AlertDialogExample");
+                        alert.show();
+
                         break;
 
                 }

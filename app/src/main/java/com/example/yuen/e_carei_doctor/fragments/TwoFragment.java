@@ -1,6 +1,7 @@
 package com.example.yuen.e_carei_doctor.fragments;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
@@ -9,16 +10,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.example.yuen.e_carei.Case_history_review;
 import com.example.yuen.e_carei.R;
-import com.example.yuen.e_carei_doctor.customlistviewvolley.adater.CustomListAdapter_take;
 import com.example.yuen.e_carei_app.AppController;
+import com.example.yuen.e_carei_doctor.customlistviewvolley.adater.CustomListAdapter_take;
 import com.example.yuen.e_carei_doctor.customlistviewvolley.model.Take_med_list;
 
 import org.json.JSONArray;
@@ -45,6 +46,9 @@ public class TwoFragment extends android.support.v4.app.Fragment implements Swip
     private CustomListAdapter_take listadapter;
 
     private SwipeRefreshLayout swipeRefreshLayout;
+    private ArrayList arlist_uid=new ArrayList();
+    private ArrayList arlist_name=new ArrayList();
+    private ArrayList arlist_photo=new ArrayList();
 
     public TwoFragment() {
         // Required empty public constructor
@@ -98,17 +102,17 @@ public class TwoFragment extends android.support.v4.app.Fragment implements Swip
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getActivity(), "row " + position + " was pressed", Toast.LENGTH_LONG).show();
-                switch (position) {
-                    case 0:
-                        TextView c =(TextView)view.findViewById(R.id.take_title);
-                        String item = c.getText().toString();
-                        Log.d("id", item);
-                        break;
+                String saved_image = arlist_photo.get(position).toString().substring(26);
+                String saved_name = arlist_name.get(position).toString();
+                String saved_uid = arlist_uid.get(position).toString();
+                Log.d(saved_image,saved_name);
 
-                    case 1:
-                        break;
-                }
-
+                Intent i = new Intent();
+                i.setClass(getActivity(), Case_history_review.class);
+                i.putExtra("uid", saved_uid);
+                i.putExtra("name",saved_name);
+                i.putExtra("image", saved_image);
+                startActivity(i);
             }
 
         });
@@ -161,15 +165,17 @@ public class TwoFragment extends android.support.v4.app.Fragment implements Swip
                                 //get name
                                 Log.d("uid",objuid.getString("uid"));
                                 takemedlist.setUid("UID: " + objuid.getString("uid"));
+                                arlist_uid.add(objuid.getString("uid"));
 
                                 JSONObject objname= response.getJSONObject(++i);
                                 Log.d("name", objname.getString("name"));
                                 //get name
                                 takemedlist.setName("Name: "+objname.getString("name"));
+                                arlist_name.add(objname.getString("name"));
 
                                 JSONObject objaid= response.getJSONObject(++i);
                                 //get name
-                                Log.d("aid",objaid.getString("appointment_id"));
+                                Log.d("aid", objaid.getString("appointment_id"));
                                 takemedlist.setAid(objaid.getInt("appointment_id"));
 
                                 //Log.d("i","i:"+i);
@@ -178,7 +184,7 @@ public class TwoFragment extends android.support.v4.app.Fragment implements Swip
                                 JSONObject objimage= response.getJSONObject(++i);
                                 takemedlist.setThumbnailUrl(objimage.getString("image"));
                                 //Log.d("i","i:"+i);
-
+                                arlist_photo.add(objimage.getString("image"));
 
                                 //takemedlist.setTitle(obj.getString("id"));
                                 //takemedlist.setThumbnailUrl(obj.getString("image"));

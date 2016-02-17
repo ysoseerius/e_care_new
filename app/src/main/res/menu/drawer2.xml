@@ -4,23 +4,23 @@
         <item
             android:id="@+id/nav_p1"
             android:checked="true"
-            android:icon="@drawable/hi"
+            android:icon="@drawable/patient_list"
             android:title="Patient List"/>
         <item
             android:id="@+id/nav_p2"
-            android:icon="@drawable/hi"
+            android:icon="@drawable/icon_queue"
             android:title="Appointment list"/>
         <item
             android:id="@+id/nav_p3"
-            android:icon="@drawable/hi"
+            android:icon="@drawable/icon_pill"
             android:title="Take medication"/>
         <item
             android:id="@+id/nav_p4"
-            android:icon="@drawable/hi"
-            android:title="hi"/>
+            android:icon="@drawable/search_icon"
+            android:title="Search"/>
         <item
             android:id="@+id/nav_p5"
-            android:icon="@drawable/hi"
-            android:title="hi"/>
+            android:icon="@drawable/logout"
+            android:title="Logout"/>
     </group>
 </menu>

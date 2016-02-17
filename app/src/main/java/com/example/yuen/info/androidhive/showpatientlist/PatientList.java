@@ -1,6 +1,8 @@
 package com.example.yuen.info.androidhive.showpatientlist;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -25,11 +27,14 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.example.yuen.e_carei.Case_history_review;
 import com.example.yuen.e_carei.R;
-import com.example.yuen.e_carei.Recordcreate;
 import com.example.yuen.e_carei_app.AppController;
 import com.example.yuen.e_carei_doctor.activity.IconTextTabsActivity;
+import com.example.yuen.e_carei_doctor.customlistviewvolley.CirculaireNetworkImageView;
+import com.example.yuen.e_carei_login.LoginActivity;
 import com.example.yuen.e_carei_login.SQLiteHandler;
+import com.example.yuen.e_carei_login.SessionManager;
 import com.example.yuen.e_carei_search.customsearchlistvolley.activity.SearchTabsActivity;
 import com.example.yuen.info.androidhive.showpatientlist.adater.CustomListAdapter;
 import com.example.yuen.info.androidhive.showpatientlist.model.Patient;
@@ -63,8 +68,10 @@ public class PatientList extends AppCompatActivity implements SwipeRefreshLayout
 	private List<Patient> patientList = new ArrayList<Patient>();
 	private ListView listView;
 	private CustomListAdapter adapter;
+	private ArrayList arlist=new ArrayList();
 
 	private SQLiteHandler db;
+	private SessionManager session;
 
 	private SwipeRefreshLayout swipeRefreshLayout;
 
@@ -78,6 +85,7 @@ public class PatientList extends AppCompatActivity implements SwipeRefreshLayout
 		toolbar.setTitle("E-care");
 		setSupportActionBar(toolbar);
 
+		session = new SessionManager(getApplicationContext());
 		drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		NavigationView view = (NavigationView) findViewById(R.id.navigation_view);
 		view.getMenu().getItem(0).setChecked(true);
@@ -88,8 +96,6 @@ public class PatientList extends AppCompatActivity implements SwipeRefreshLayout
 				Log.d(R.id.nav_1 + "", menuItem.getItemId() + " ");
 				Intent intent = new Intent();
 				switch (menuItem.getItemId()) {
-
-
 					case R.id.nav_p1:
 						intent.setClass(PatientList.this, PatientList.class);
 						//intent .putExtra("name", "Hello B Activity");
@@ -101,20 +107,44 @@ public class PatientList extends AppCompatActivity implements SwipeRefreshLayout
 						startActivity(intent);
 						break;
 					case R.id.nav_p3:
-
 						intent.setClass(PatientList.this, IconTextTabsActivity.class);
 						//intent .putExtra("name", "Hello B Activity");
 						startActivity(intent);
 						break;
 					case R.id.nav_p4:
-						intent.setClass(PatientList.this, Recordcreate.class);
-						//intent .putExtra("name", "Hello B Activity");
+						intent.setClass(PatientList.this, SearchTabsActivity.class);
 						startActivity(intent);
 						break;
 					case R.id.nav_p5:
-						intent.setClass(PatientList.this, SearchTabsActivity.class);
-						startActivity(intent);
 						//logout
+						AlertDialog.Builder builder = new AlertDialog.Builder(PatientList.this);
+						//Uncomment the below code to Set the message and title from the strings.xml file
+						//builder.setMessage(R.string.dialog_message) .setTitle(R.string.dialog_title);
+
+						//Setting message manually and performing action on button click
+						builder.setMessage("Do you want to close this application ?")
+								.setCancelable(false)
+								.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog, int id) {
+										session.setLogin(false);
+										db.deleteUsers();
+										final Intent intent_logout = new Intent(PatientList.this, LoginActivity.class);
+										startActivity(intent_logout);
+										finish();
+									}
+								})
+								.setNegativeButton("No", new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog, int id) {
+										//  Action for 'NO' Button
+										dialog.cancel();
+									}
+								});
+
+						//Creating dialog box
+						AlertDialog alert = builder.create();
+						//Setting the title manually
+						alert.setTitle("AlertDialogExample");
+						alert.show();
 						break;
 
 				}
@@ -188,17 +218,19 @@ public class PatientList extends AppCompatActivity implements SwipeRefreshLayout
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				Toast.makeText(PatientList.this, "row " + position + " was pressed", Toast.LENGTH_LONG).show();
 				Log.d("position","0"+position);
-				switch (position) {
-					case 0:
-						TextView c =(TextView)view.findViewById(R.id.title);
-						String item = c.getText().toString();
-						//Log.d("id",item);
-						break;
-
-					case 1:
-						break;
-				}
-
+				TextView tv_uid =(TextView) view.findViewById(R.id.uid);
+				TextView tv_name =(TextView) view.findViewById(R.id.title);
+				String saved_name= tv_name.getText().toString();
+				String saved_uid= tv_uid.getText().toString();
+				//取得arraylist內容
+				String saved_image = arlist.get(position).toString().substring(26);
+				Intent i = new Intent();
+				i.setClass(PatientList.this, Case_history_review.class);
+				i.putExtra("uid", saved_uid);
+				i.putExtra("name", saved_name);
+				Log.d("name_image",saved_image);
+				i.putExtra("image", saved_image);
+				startActivity(i);
 			}
 
 		});
@@ -254,8 +286,8 @@ public class PatientList extends AppCompatActivity implements SwipeRefreshLayout
 								//get image url second item
 								JSONObject objimage= response.getJSONObject(++i);
 								patient.setThumbnailUrl(objimage.getString("image"));
-								//Log.d("i","i:"+i);
 
+								arlist.add(objimage.getString("image"));
 
 								//patient.setTitle(obj.getString("id"));
 								//patient.setThumbnailUrl(obj.getString("image"));

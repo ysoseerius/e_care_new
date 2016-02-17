@@ -1,11 +1,11 @@
 package com.example.yuen.e_carei_app;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,11 +27,14 @@ import com.android.volley.toolbox.NetworkImageView;
 import com.example.yuen.PatientReport;
 import com.example.yuen.e_carei.Appointmentcreate;
 import com.example.yuen.e_carei.R;
-import com.example.yuen.e_carei.TimeList;
 import com.example.yuen.e_carei.queueshow;
+import com.example.yuen.e_carei_doctor.activity.IconTextTabsActivity;
 import com.example.yuen.e_carei_doctor.customlistviewvolley.CirculaireNetworkImageView;
+import com.example.yuen.e_carei_login.LoginActivity;
 import com.example.yuen.e_carei_login.SQLiteHandler;
 import com.example.yuen.e_carei_login.SessionManager;
+import com.example.yuen.e_carei_search.customsearchlistvolley.activity.SearchTabsActivity;
+import com.example.yuen.info.androidhive.showpatientlist.PatientList;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -69,92 +73,217 @@ public class CaseReviewDetail extends AppCompatActivity {
         toolbar.setTitle("E-care");
         setSupportActionBar(toolbar);
 
-        //set drawer name
-        // TextView username = (TextView)findViewById(R.id.name);
-        //HashMap<String, String> dbuser = db.getUserDetails();
-        //username.setText(dbuser.get("name"));
-
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        NavigationView view = (NavigationView) findViewById(R.id.navigation_view);
-        view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(MenuItem menuItem) {
-                Toast.makeText(CaseReviewDetail.this, menuItem.getItemId() + " pressed", Toast.LENGTH_LONG).show();
-                Log.d(R.id.nav_1 + "", menuItem.getItemId() + " ");
-                Intent intent = new Intent();
-                switch (menuItem.getItemId()) {
-
-                    case R.id.nav_1:
-                        break;
-                    case R.id.nav_2:
-                        intent.setClass(CaseReviewDetail.this, queueshow.class);
-                        //intent .putExtra("name", "Hello B Activity");
-                        startActivity(intent);
-                        break;
-                    case R.id.nav_3:
-                        intent.setClass(CaseReviewDetail.this, Appointmentcreate.class);
-                        //intent .putExtra("name", "Hello B Activity");
-                        startActivity(intent);
-                        break;
-                    case R.id.nav_4:
-                        intent.setClass(CaseReviewDetail.this, AlarmActivity.class);
-                        startActivity(intent);
-                        break;
-                    case R.id.nav_5:
-                        //用來試appointment list
-                        intent.setClass(CaseReviewDetail.this, PatientReport.class);
-                        startActivity(intent);
-                        break;
-                    case R.id.nav_6:
-                        intent.setClass(CaseReviewDetail.this, TimeList.class);
-                        startActivity(intent);
-                        //logout
-                        break;
-
-                }
-                menuItem.setChecked(true);
-                drawerLayout.closeDrawers();
-                return true;
-            }
-        });
-
-        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle( this, drawerLayout, toolbar, R.string.drawer_open , R.string.drawer_close){
-            @Override
-            public void onDrawerClosed(View drawerView) {
-                super .onDrawerClosed(drawerView);
-            }
-
-            @Override
-            public void onDrawerOpened(View drawerView) {
-                super .onDrawerOpened(drawerView);
-            }
-        };
+        ImageLoader imageLoader = AppController.getInstance().getImageLoader();
         db = new SQLiteHandler(getApplicationContext());
         HashMap<String, String> dbuser = db.getUserDetails();
-        View header = view.getHeaderView(0);
-        TextView headerName = (TextView) header.findViewById(R.id.drawer_name);
-        String username = dbuser.get("name");
-        headerName.setText(username);
-        ImageLoader imageLoader = AppController.getInstance().getImageLoader();
-        CirculaireNetworkImageView headerphoto = (CirculaireNetworkImageView) header.findViewById(R.id.drawer_thumbnail);
-        headerphoto.setImageUrl("http://192.168.43.216/test/" + dbuser.get("image"), imageLoader);
-        drawerLayout.setDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.syncState();
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-                Intent intent = new Intent(CaseReviewDetail.this, TimeList.class);
-                //intent.putExtra("uid", uid);
-                //intent.putExtra("case_number",case_number);
-                startActivity(intent);
-            }
-        });
+        session = new SessionManager(getApplicationContext());
 
+        if(dbuser.get("account_type").equals("2")) {
+            drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+            NavigationView view = (NavigationView) findViewById(R.id.navigation_view);
+            view.getMenu().clear();
+            view.inflateMenu(R.menu.drawer);
+            view.getMenu().getItem(0).setChecked(true);
+
+            view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(MenuItem menuItem) {
+                    Toast.makeText(CaseReviewDetail.this, menuItem.getItemId() + " pressed", Toast.LENGTH_LONG).show();
+                    Log.d(R.id.nav_1 + "", menuItem.getItemId() + " ");
+                    Intent intent = new Intent();
+                    switch (menuItem.getItemId()) {
+                        case R.id.nav_1:
+                            break;
+                        case R.id.nav_2:
+                            intent.setClass(CaseReviewDetail.this, queueshow.class);
+                            //intent .putExtra("name", "Hello B Activity");
+                            startActivity(intent);
+                            break;
+                        case R.id.nav_3:
+                            intent.setClass(CaseReviewDetail.this, Appointmentcreate.class);
+                            //intent .putExtra("name", "Hello B Activity");
+                            startActivity(intent);
+                            break;
+                        case R.id.nav_4:
+                            intent.setClass(CaseReviewDetail.this, AlarmActivity.class);
+                            //intent .putExtra("name", "Hello B Activity");
+                            startActivity(intent);
+                            break;
+                        case R.id.nav_5:
+                            intent.setClass(CaseReviewDetail.this, PatientReport.class);
+                            //intent .putExtra("name", "Hello B Activity");
+                            startActivity(intent);
+                            break;
+                        case R.id.nav_6:
+                            //logout
+                            AlertDialog.Builder builder = new AlertDialog.Builder(CaseReviewDetail.this);
+                            //Uncomment the below code to Set the message and title from the strings.xml file
+                            //builder.setMessage(R.string.dialog_message) .setTitle(R.string.dialog_title);
+
+                            //Setting message manually and performing action on button click
+                            builder.setMessage("Do you want to close this application ?")
+                                    .setCancelable(false)
+                                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            session.setLogin(false);
+                                            db.deleteUsers();
+                                            final Intent intent_logout = new Intent(CaseReviewDetail.this, LoginActivity.class);
+                                            startActivity(intent_logout);
+                                            finish();
+                                        }
+                                    })
+                                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            //  Action for 'NO' Button
+                                            dialog.cancel();
+                                        }
+                                    });
+
+                            //Creating dialog box
+                            AlertDialog alert = builder.create();
+                            //Setting the title manually
+                            alert.setTitle("AlertDialogExample");
+                            alert.show();
+
+                            break;
+
+                    }
+                    menuItem.setChecked(true);
+                    drawerLayout.closeDrawers();
+                    return true;
+                }
+            });
+
+            ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close) {
+                @Override
+                public void onDrawerClosed(View drawerView) {
+                    super.onDrawerClosed(drawerView);
+                }
+
+                @Override
+                public void onDrawerOpened(View drawerView) {
+                    super.onDrawerOpened(drawerView);
+                }
+            };
+
+            View header = view.getHeaderView(0);
+            TextView headerName = (TextView) header.findViewById(R.id.drawer_name);
+            String username = dbuser.get("name");
+            headerName.setText(username);
+
+            CirculaireNetworkImageView headerphoto = (CirculaireNetworkImageView) header.findViewById(R.id.drawer_thumbnail);
+            headerphoto.setImageUrl("http://192.168.43.216/test/" + dbuser.get("image"), imageLoader);
+            drawerLayout.setDrawerListener(actionBarDrawerToggle);
+            actionBarDrawerToggle.syncState();
+        }
+        else if(dbuser.get("account_type").equals("1"))
+        {
+            drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+            NavigationView view = (NavigationView) findViewById(R.id.navigation_view);
+            view.getMenu().clear();
+            view.inflateMenu(R.menu.drawer2);
+            view.getMenu().getItem(0).setChecked(true);
+            view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(MenuItem menuItem) {
+                    Toast.makeText(CaseReviewDetail.this, menuItem.getItemId() + " pressed", Toast.LENGTH_LONG).show();
+                    Log.d(R.id.nav_1 + "", menuItem.getItemId() + " ");
+                    Intent intent = new Intent();
+                    switch (menuItem.getItemId()) {
+
+                        case R.id.nav_p1:
+                            intent.setClass(CaseReviewDetail.this, PatientList.class);
+                            //intent .putExtra("name", "Hello B Activity");
+                            startActivity(intent);
+                            break;
+                        case R.id.nav_p2:
+                            intent.setClass(CaseReviewDetail.this, IconTextTabsActivity.class);
+                            //intent .putExtra("name", "Hello B Activity");
+                            startActivity(intent);
+                            break;
+                        case R.id.nav_p3:
+                            intent.setClass(CaseReviewDetail.this, IconTextTabsActivity.class);
+                            //intent .putExtra("name", "Hello B Activity");
+                            startActivity(intent);
+                            break;
+                        case R.id.nav_p4:
+                            intent.setClass(CaseReviewDetail.this, SearchTabsActivity.class);
+                            startActivity(intent);
+                            break;
+                        case R.id.nav_p5:
+                            //logout
+                            AlertDialog.Builder builder = new AlertDialog.Builder(CaseReviewDetail.this);
+                            //Uncomment the below code to Set the message and title from the strings.xml file
+                            //builder.setMessage(R.string.dialog_message) .setTitle(R.string.dialog_title);
+
+                            //Setting message manually and performing action on button click
+                            builder.setMessage("Do you want to close this application ?")
+                                    .setCancelable(false)
+                                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            session.setLogin(false);
+                                            db.deleteUsers();
+                                            final Intent intent_logout = new Intent(CaseReviewDetail.this, LoginActivity.class);
+                                            startActivity(intent_logout);
+                                            finish();
+                                        }
+                                    })
+                                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            //  Action for 'NO' Button
+                                            dialog.cancel();
+                                        }
+                                    });
+
+                            //Creating dialog box
+                            AlertDialog alert = builder.create();
+                            //Setting the title manually
+                            alert.setTitle("AlertDialogExample");
+                            alert.show();
+                            break;
+                    }
+                    menuItem.setChecked(true);
+                    drawerLayout.closeDrawers();
+                    return true;
+                }
+            });
+
+            ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle( this, drawerLayout, toolbar, R.string.drawer_open , R.string.drawer_close){
+                @Override
+                public void onDrawerClosed(View drawerView) {
+                    super .onDrawerClosed(drawerView);
+                }
+
+                @Override
+                public void onDrawerOpened(View drawerView) {
+                    super .onDrawerOpened(drawerView);
+                }
+            };
+
+            db = new SQLiteHandler(getApplicationContext());
+            View header = view.getHeaderView(0);
+            TextView headerName = (TextView) header.findViewById(R.id.drawer_name);
+            String username = dbuser.get("name");
+            headerName.setText(username);
+            CirculaireNetworkImageView headerphoto = (CirculaireNetworkImageView) header.findViewById(R.id.drawer_thumbnail);
+            headerphoto.setImageUrl("http://192.168.43.216/test/" + dbuser.get("image"), imageLoader);
+            drawerLayout.setDrawerListener(actionBarDrawerToggle);
+            actionBarDrawerToggle.syncState();
+        }
         fetchCase();
+
+        Button back_button = (Button) findViewById(R.id.button);
+
+        back_button.setOnClickListener(new Button.OnClickListener() {
+
+            @Override
+
+            public void onClick(View v) {
+                onBackPressed();
+            }
+
+        });
 
     }
 
@@ -163,8 +292,10 @@ public class CaseReviewDetail extends AppCompatActivity {
      */
     private void fetchCase() {
         // Creating volley request obj
-        final String case_number = "0001";
-        final String check_uid ="P001";
+        Intent i = getIntent();
+        final String case_number = i.getStringExtra("case_number");
+        final String check_uid =i.getStringExtra("uid");
+        Log.d(case_number,check_uid);
 
         JsonArrayRequest movieReq = new JsonArrayRequest(url,
                 new Response.Listener<JSONArray>() {
@@ -183,23 +314,27 @@ public class CaseReviewDetail extends AppCompatActivity {
 
                 for (int i = 0; i < response.length();i++) {
                     try {
-                        Log.d("length" , response.length() + "");
+                        Log.d("length", response.length() + "");
                         uid_show.setText(check_uid);
-                        name_show.setText("");
+
                         Log.d("length i", i + "");
 
                         JSONObject objuid= response.getJSONObject(i);
                         final String uid_get = objuid.getString("uid");
-                        Log.d("uid",objuid.getString("uid"));
+                        Log.d(check_uid,"!"+objuid.getString("uid"));
 
                         Log.d("length i 2", i + "");
 
                         JSONObject objcase= response.getJSONObject(++i);
                         final String case_get = objcase.getString("case_number");
                         Log.d("case",objcase.getString("case_number"));
+                        Log.d("------linebreak","--------");
+                        Log.d(case_get.equals(case_number)+"",uid_get.equals(check_uid)+"");
+                        Log.d(case_get,case_number);
+                        if(case_number.equals(case_get) && uid_get.equals(check_uid)) {
+                            JSONObject objname = response.getJSONObject(++i);
+                            name_show.setText(objname.getString("name"));
 
-                        Log.d("length i 3", i + "");
-                        if(case_get.equals(case_number) && uid_get.equals(check_uid)) {
                             JSONObject objimage = response.getJSONObject(++i);
                             ImageLoader imageLoader = AppController.getInstance().getImageLoader();
                             photo.setImageUrl(objimage.getString("image"), imageLoader);
@@ -224,7 +359,7 @@ public class CaseReviewDetail extends AppCompatActivity {
                         }
                     else
                         {
-                            i=i+5;
+                            i=i+6;
                         }
                         Log.d(i+"",response.length()+"");
                     } catch (JSONException e) {
