@@ -46,7 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="150dp"
             android:id="@+id/imageView"
-            android:background="@drawable/report"
+            android:background="@drawable/report1"
             android:paddingBottom="20dp"/>
 
         <android.support.design.widget.TextInputLayout

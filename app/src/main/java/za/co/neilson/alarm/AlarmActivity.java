@@ -40,7 +40,7 @@ import com.example.yuen.PatientReport;
 import com.example.yuen.e_carei.Appointmentcreate;
 import com.example.yuen.e_carei.Case_history_review;
 import com.example.yuen.e_carei.R;
-import com.example.yuen.e_carei.queueshow;
+import com.example.yuen.e_carei.ShowAppointmentList;
 import com.example.yuen.e_carei_app.AppController;
 import com.example.yuen.e_carei_doctor.customlistviewvolley.CirculaireNetworkImageView;
 import com.example.yuen.e_carei_login.LoginActivity;
@@ -92,7 +92,7 @@ public class AlarmActivity extends BaseActivity {
 						startActivity(intent);
 						break;
 					case R.id.nav_2:
-						intent.setClass(AlarmActivity.this, queueshow.class);
+						intent.setClass(AlarmActivity.this, ShowAppointmentList.class);
 						//intent .putExtra("name", "Hello B Activity");
 						startActivity(intent);
 						break;

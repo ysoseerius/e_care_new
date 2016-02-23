@@ -44,6 +44,12 @@
         </activity>
 
         <activity
+            android:name="com.example.yuen.e_carei.ShowAppointmentList"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
+        <activity
             android:name="com.example.yuen.info.androidhive.showpatientlist.PatientList"
             android:windowSoftInputMode="stateHidden"
             android:label="@string/patient_list"

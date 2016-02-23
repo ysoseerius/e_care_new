@@ -4,6 +4,9 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/e_care_new.iml" filepath="$PROJECT_DIR$/e_care_new.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library-1.3.0-javadoc/library-1.3.0-javadoc.iml" filepath="$PROJECT_DIR$/library-1.3.0-javadoc/library-1.3.0-javadoc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library-1.3.0-sources/library-1.3.0-sources.iml" filepath="$PROJECT_DIR$/library-1.3.0-sources/library-1.3.0-sources.iml" />
     </modules>
   </component>
 </project>

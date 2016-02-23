@@ -67,6 +67,7 @@ public class Appointmentcreate extends AppCompatActivity {
     private String atype_get;
     private String time_get="0";
     private SessionManager session;
+    private int check_number=0;
 
     Date today = new Date();
 
@@ -78,6 +79,7 @@ public class Appointmentcreate extends AppCompatActivity {
     Date increment5 = addDay(today, 5);
     Date increment6 = addDay(today, 6);
     Date increment7 = addDay(today, 7);
+    Date increment8 = addDay(today, 8);
 
     SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
     String date1 = formatter.format(increment1);
@@ -87,9 +89,10 @@ public class Appointmentcreate extends AppCompatActivity {
     String date5 = formatter.format(increment5);
     String date6 = formatter.format(increment6);
     String date7 = formatter.format(increment7);
+    String date8 = formatter.format(increment8);
     String date_get = formatter.format(increment0);
 
-    private String[] em_date = {date1,date2,date3,date4,date5,date6,date7};
+    private String[] em_date = {date2,date3,date4,date5,date6,date7,date8};
     private String[] em_type = {"Select appointment type","A","B"};
     private String[] em_time = {"0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23"};
 
@@ -119,7 +122,7 @@ public class Appointmentcreate extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case R.id.nav_2:
-                        intent.setClass(Appointmentcreate.this, queueshow.class);
+                        intent.setClass(Appointmentcreate.this, ShowAppointmentList.class);
                         //intent .putExtra("name", "Hello B Activity");
                         startActivity(intent);
                         break;
@@ -191,7 +194,7 @@ public class Appointmentcreate extends AppCompatActivity {
         };
 
         db = new SQLiteHandler(getApplicationContext());
-        HashMap<String, String> dbuser = db.getUserDetails();
+        final HashMap<String, String> dbuser = db.getUserDetails();
         View header = view.getHeaderView(0);
         TextView headerName = (TextView) header.findViewById(R.id.drawer_name);
         String username = dbuser.get("name");
@@ -288,8 +291,8 @@ public class Appointmentcreate extends AppCompatActivity {
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
-                final String uid = "P001";
-                final String name = "Chan Tai Man";
+                final String uid = dbuser.get("uid");
+                final String name =dbuser.get("name");
 
                 StringRequest postRequest = new StringRequest(Request.Method.POST, create_appointment_url,
                         new Response.Listener<String>() {
@@ -318,7 +321,14 @@ public class Appointmentcreate extends AppCompatActivity {
                         jsonParams.put("time", time_get);
                         Log.d("time", time_get);
                         jsonParams.put("doctor", "Dr. Chan");
-                        jsonParams.put("date", date_get);
+                        if(atype_get.equals("B")) {
+                            jsonParams.put("date", date1);
+                        }
+                        else if(atype_get.equals("A"))
+                        {
+                            jsonParams.put("date", date_get);
+                        }
+
                         Log.d("date", date_get);
 
                         return jsonParams;
@@ -327,7 +337,7 @@ public class Appointmentcreate extends AppCompatActivity {
 
                 AppController.getInstance().addToRequestQueue(postRequest);
 
-            if(!atype_get.equals("B"))
+            if(atype_get.equals("A"))
                 {
                     //check to see the slot is full or not.1. add data to db and calculate the no of data in the db 2. If >5 , delete it
                     JsonArrayRequest movieReq = new JsonArrayRequest(check_full_url,
@@ -347,6 +357,8 @@ public class Appointmentcreate extends AppCompatActivity {
                                             //get id
                                             JSONObject objnum = response.getJSONObject(i);
                                             int number_of_queue = objnum.getInt("number_of_queue");
+                                            check_number = number_of_queue;
+                                            Toast.makeText(view.getContext(), number_of_queue + "<5" + "Appointment has been sent!", Toast.LENGTH_SHORT).show();
                                             Log.d("number_of_queue", number_of_queue + "");
                                             if (number_of_queue > 5) {
                                                 TextView error_msg = (TextView) findViewById(R.id.error_msg);
@@ -355,12 +367,38 @@ public class Appointmentcreate extends AppCompatActivity {
                                                 error_msg.setTextColor(Color.RED);
                                                 error_msg.setVisibility(View.VISIBLE);
 
-                                                Toast.makeText(view.getContext(), "number_of_queue:" + number_of_queue + ">5", Toast.LENGTH_SHORT).show();
+                                                AlertDialog.Builder builder1 = new AlertDialog.Builder(view.getContext());
+                                                builder1.setMessage("number_of_queue:" + number_of_queue + ">6" + " **Sorry!!This time slot if full**");
+                                                builder1.setCancelable(true);
+
+                                                builder1.setNeutralButton(
+                                                        "Yes",
+                                                        new DialogInterface.OnClickListener() {
+                                                            public void onClick(DialogInterface dialog, int id) {
+                                                                dialog.cancel();
+                                                            }
+                                                        });
+
+                                                AlertDialog alert11 = builder1.create();
+                                                alert11.show();
+
                                             } else {
                                                 TextView error_msg = (TextView) findViewById(R.id.error_msg);
                                                 error_msg.setVisibility(View.GONE);
-                                                Toast.makeText(view.getContext(), "number_of_queue:" + number_of_queue + "<5", Toast.LENGTH_SHORT).show();
+                                                AlertDialog.Builder builder1 = new AlertDialog.Builder(view.getContext());
+                                                builder1.setMessage("number_of_queue:" + number_of_queue + "<6" + " Appointment has been sent !");
+                                                builder1.setCancelable(true);
 
+                                                builder1.setNeutralButton(
+                                                        "OK",
+                                                        new DialogInterface.OnClickListener() {
+                                                            public void onClick(DialogInterface dialog, int id) {
+                                                                dialog.cancel();
+                                                            }
+                                                        });
+
+                                                AlertDialog alert11 = builder1.create();
+                                                alert11.show();
                                             }
 
                                         } catch (JSONException e) {
@@ -382,7 +420,30 @@ public class Appointmentcreate extends AppCompatActivity {
                     AppController.getInstance().addToRequestQueue(movieReq);
 
                 }
+
+                if(check_number < 5)
+                {
+
+                    AlertDialog.Builder builder1 = new AlertDialog.Builder(view.getContext());
+                    builder1.setMessage(" Appointment has been sent successfully!");
+                    builder1.setCancelable(true);
+
+                    builder1.setNeutralButton(
+                            "OK",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.cancel();
+                                    Intent i = new Intent();
+                                    i.setClass(Appointmentcreate.this, queueshow.class);
+                                    startActivity(i);
+                                }
+                            });
+
+                    AlertDialog alert11 = builder1.create();
+                    alert11.show();
+                }
             }
+
 
         });
 

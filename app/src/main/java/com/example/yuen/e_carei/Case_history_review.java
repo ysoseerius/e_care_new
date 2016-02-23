@@ -178,7 +178,7 @@ public class Case_history_review extends Activity {
                             startActivity(intent);
                             break;
                         case R.id.nav_2:
-                            intent.setClass(Case_history_review.this, queueshow.class);
+                            intent.setClass(Case_history_review.this, ShowAppointmentList.class);
                             //intent .putExtra("name", "Hello B Activity");
                             startActivity(intent);
                             break;
