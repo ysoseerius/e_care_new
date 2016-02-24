@@ -35,23 +35,22 @@
                     app:popupTheme="@style/AppTheme.PopupOverlay" />
 
             </android.support.design.widget.AppBarLayout>
-
             <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/swipe_refresh_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-       >
+                android:id="@+id/swipe_refresh_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+               >
 
         <!-- Editext for Search -->
 
                 <ListView
-            android:id="@+id/list"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:dividerHeight="0dp"
-            android:divider="@null"
-            android:listSelector="@drawable/list_row_selector"
-            />
+                    android:id="@+id/list"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:dividerHeight="0dp"
+                    android:divider="@null"
+                    android:listSelector="@drawable/list_row_selector"
+                    />
 
 </android.support.v4.widget.SwipeRefreshLayout>
 
