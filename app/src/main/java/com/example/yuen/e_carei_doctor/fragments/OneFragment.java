@@ -160,8 +160,10 @@ public class OneFragment extends Fragment implements SwipeRefreshLayout.OnRefres
                                 Appointment appointment = new Appointment();
 
                                 Log.d("length", "length:" + response.length());
-
-                                    JSONObject objname= response.getJSONObject(i);
+                                JSONObject objaid= response.getJSONObject(i);
+                                appointment.setAid(objaid.getInt("appointment_id"));
+                                Log.d("aid",objaid.getInt("appointment_id")+"");
+                                    JSONObject objname= response.getJSONObject(++i);
                                     //get id
                                 Log.d("name", objname.getString("name"));
                                     appointment.setName("Name:" + objname.getString("name"));

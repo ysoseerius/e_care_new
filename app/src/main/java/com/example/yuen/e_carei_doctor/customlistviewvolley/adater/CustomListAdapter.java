@@ -265,6 +265,8 @@ public class CustomListAdapter extends BaseAdapter {
 			Appointment p=appointmentItems.get(mPosition);
 			final String name=p.getName();
 			final String uid = p.getUid().substring(4, p.getUid().length());
+			final String aid = String.valueOf(p.getAid());
+			Log.d(p.getAid()+"",aid);
 			//final String image=p.getThumbnailUrl();
 
 
@@ -295,7 +297,9 @@ public class CustomListAdapter extends BaseAdapter {
 					//String imagepost = image.substring(image.lastIndexOf('/')+1,image.length());
 					jsonParams.put("name", name);
 					jsonParams.put("uid", uid);
+					jsonParams.put("aid", aid);
 					Log.d("name", name);
+					Log.d("aid",aid);
 					//jsonParams.put("image", imagepost);
 
 					return jsonParams;

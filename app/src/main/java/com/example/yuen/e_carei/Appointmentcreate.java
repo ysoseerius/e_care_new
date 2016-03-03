@@ -433,9 +433,6 @@ public class Appointmentcreate extends AppCompatActivity {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
                                     dialog.cancel();
-                                    Intent i = new Intent();
-                                    i.setClass(Appointmentcreate.this, queueshow.class);
-                                    startActivity(i);
                                 }
                             });
 
