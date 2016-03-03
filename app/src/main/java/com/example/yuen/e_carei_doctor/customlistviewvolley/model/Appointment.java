@@ -56,7 +56,7 @@ public class Appointment {
 	}
 
 	public int getAid() {
-		return queue;
+		return aid;
 	}
 
 	public void setAid(int aid) {
