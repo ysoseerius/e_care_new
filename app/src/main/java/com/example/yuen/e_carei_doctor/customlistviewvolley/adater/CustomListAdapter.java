@@ -39,9 +39,9 @@ public class CustomListAdapter extends BaseAdapter {
 	private Activity activity;
 	private LayoutInflater inflater;
 	private List<Appointment> appointmentItems;
-	private static final String addurl = "http://192.168.43.216/test/add_appointment.php";
-	private static final String sendurl = "http://192.168.43.216/test/send_notice.php";
-	private static final String queueurl = "http://192.168.43.216/test/requeue.php";
+	private static final String addurl = "http://10.89.133.147/test/add_appointment.php";
+	private static final String sendurl = "http://10.89.133.147/test/send_notice.php";
+	private static final String queueurl = "http://10.89.133.147/test/requeue.php";
 
 	ImageLoader imageLoader = AppController.getInstance().getImageLoader();
 

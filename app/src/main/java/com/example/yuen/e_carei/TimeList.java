@@ -50,7 +50,7 @@ public class TimeList extends AppCompatActivity implements SwipeRefreshLayout.On
 	private int offSet = 0;
 
 	// Movies json url
-	private String time_url = "http://192.168.43.216/test/timelist.php";
+	private String time_url = "http://10.89.133.147/test/timelist.php";
 	private ProgressDialog pDialog;
 	private List<Time> timeList = new ArrayList<Time>();
 	private ListView listView;
@@ -133,7 +133,7 @@ public class TimeList extends AppCompatActivity implements SwipeRefreshLayout.On
 		headerName.setText(username);
 		ImageLoader imageLoader = AppController.getInstance().getImageLoader();
 		CirculaireNetworkImageView headerphoto = (CirculaireNetworkImageView) header.findViewById(R.id.drawer_thumbnail);
-		headerphoto.setImageUrl("http://192.168.43.216/test/" + dbuser.get("image"), imageLoader);
+		headerphoto.setImageUrl("http://10.89.133.147/test/" + dbuser.get("image"), imageLoader);
 		drawerLayout.setDrawerListener(actionBarDrawerToggle);
 		actionBarDrawerToggle.syncState();
 

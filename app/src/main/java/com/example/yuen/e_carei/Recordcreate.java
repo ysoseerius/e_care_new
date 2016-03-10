@@ -41,7 +41,7 @@ import java.util.Map;
 
 public class Recordcreate extends AppCompatActivity {
 
-    private static final String create_record_url = "http://192.168.43.216/test/create_record.php";
+    private static final String create_record_url = "http://10.89.133.147/test/create_record.php";
     private DrawerLayout drawerLayout;
     int navItemId;
     private Context mContext;

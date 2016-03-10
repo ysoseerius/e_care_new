@@ -50,8 +50,8 @@ import za.co.neilson.alarm.AlarmActivity;
 
 public class Appointmentcreate extends AppCompatActivity {
 
-    private static final String create_appointment_url = "http://192.168.43.216/test/create_appointment.php";
-    private static final String check_full_url = "http://192.168.43.216/test/check_full.php";
+    private static final String create_appointment_url = "http://10.89.133.147/test/create_appointment.php";
+    private static final String check_full_url = "http://10.89.133.147/test/check_full.php";
     private DrawerLayout drawerLayout;
     int navItemId;
     private Toolbar toolbar;
@@ -201,7 +201,7 @@ public class Appointmentcreate extends AppCompatActivity {
         headerName.setText(username);
         ImageLoader imageLoader = AppController.getInstance().getImageLoader();
         CirculaireNetworkImageView headerphoto = (CirculaireNetworkImageView) header.findViewById(R.id.drawer_thumbnail);
-        headerphoto.setImageUrl("http://192.168.43.216/test/" + dbuser.get("image"), imageLoader);
+        headerphoto.setImageUrl("http://10.89.133.147/test/" + dbuser.get("image"), imageLoader);
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
 

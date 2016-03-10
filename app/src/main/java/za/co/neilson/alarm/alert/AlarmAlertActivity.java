@@ -49,7 +49,7 @@ public class AlarmAlertActivity extends Activity implements OnClickListener {
 
 	private Alarm alarm;
 	private MediaPlayer mediaPlayer;
-	private static final String check_intake_med_url = "http://192.168.43.216/test/check_intake_med.php";
+	private static final String check_intake_med_url = "http://10.89.133.147/test/check_intake_med.php";
 	private StringBuilder answerBuilder = new StringBuilder();
 
 	//private MathProblem mathProblem;

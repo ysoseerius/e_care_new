@@ -52,7 +52,7 @@ import za.co.neilson.alarm.AlarmActivity;
 
 public class Case_history_review extends Activity {
 
-    private static final String url = "http://192.168.43.216/test/read_case_history.php";
+    private static final String url = "http://10.89.133.147/test/read_case_history.php";
     private ListView patientList;
     private CustomListAdapter adapter;
     private TextView namet, idt;
@@ -101,7 +101,7 @@ public class Case_history_review extends Activity {
         if(uid != null && name != null) {
             namet.setText(name);
             idt.setText(uid);
-            photo.setImageUrl("http://192.168.43.216/test/" + photo_name, imageLoader);
+            photo.setImageUrl("http://10.89.133.147/test/" + photo_name, imageLoader);
 
             saved_name=name;
             saved_uid=uid;
@@ -113,7 +113,7 @@ public class Case_history_review extends Activity {
             String username = dbuser.get("name");
             namet.setText(username);
             idt.setText(dbuser.get("uid"));
-            photo.setImageUrl("http://192.168.43.216/test/" + dbuser.get("image"), imageLoader);
+            photo.setImageUrl("http://10.89.133.147/test/" + dbuser.get("image"), imageLoader);
 
             saved_name=username;
             saved_uid=dbuser.get("uid");
@@ -255,7 +255,7 @@ public class Case_history_review extends Activity {
             headerName.setText(username);
 
             CirculaireNetworkImageView headerphoto = (CirculaireNetworkImageView) header.findViewById(R.id.drawer_thumbnail);
-            headerphoto.setImageUrl("http://192.168.43.216/test/" + dbuser.get("image"), imageLoader);
+            headerphoto.setImageUrl("http://10.89.133.147/test/" + dbuser.get("image"), imageLoader);
             drawerLayout.setDrawerListener(actionBarDrawerToggle);
             actionBarDrawerToggle.syncState();
         }
@@ -349,7 +349,7 @@ public class Case_history_review extends Activity {
             String username = dbuser.get("name");
             headerName.setText(username);
             CirculaireNetworkImageView headerphoto = (CirculaireNetworkImageView) header.findViewById(R.id.drawer_thumbnail);
-            headerphoto.setImageUrl("http://192.168.43.216/test/" + dbuser.get("image"), imageLoader);
+            headerphoto.setImageUrl("http://10.89.133.147/test/" + dbuser.get("image"), imageLoader);
             drawerLayout.setDrawerListener(actionBarDrawerToggle);
             actionBarDrawerToggle.syncState();
         }

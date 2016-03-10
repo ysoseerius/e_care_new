@@ -60,7 +60,7 @@ public class CaseReviewDetail extends AppCompatActivity {
     private int offSet = 0;
 
     // Movies json url
-    private String url = "http://192.168.43.216/test/show_case_review_detail.php";
+    private String url = "http://10.89.133.147/test/show_case_review_detail.php";
     private ProgressDialog pDialog;
 
 
@@ -173,7 +173,7 @@ public class CaseReviewDetail extends AppCompatActivity {
             headerName.setText(username);
 
             CirculaireNetworkImageView headerphoto = (CirculaireNetworkImageView) header.findViewById(R.id.drawer_thumbnail);
-            headerphoto.setImageUrl("http://192.168.43.216/test/" + dbuser.get("image"), imageLoader);
+            headerphoto.setImageUrl("http://10.89.133.147/test/" + dbuser.get("image"), imageLoader);
             drawerLayout.setDrawerListener(actionBarDrawerToggle);
             actionBarDrawerToggle.syncState();
         }

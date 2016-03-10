@@ -38,7 +38,7 @@ import za.co.neilson.alarm.AlarmActivity;
 
 public class queueshow extends AppCompatActivity {
 
-    private static final String queue_show_url = "http://192.168.43.216/test/queue_show.php";
+    private static final String queue_show_url = "http://10.89.133.147/test/queue_show.php";
     private DrawerLayout drawerLayout;
     int navItemId;
     private Toolbar toolbar;

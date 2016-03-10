@@ -23,7 +23,7 @@ public class CustomListAdapter extends BaseAdapter {
 	private LayoutInflater inflater;
 	private List<Patient> patientItems;
 	private Notification notification;
-	//private String url = "http://192.168.0.100/test/db_update.php";
+	//private String url = "http://10.89.133.147/test/db_update.php";
 	ImageLoader imageLoader = AppController.getInstance().getImageLoader();
 
 	public CustomListAdapter(Activity activity, List<Patient> movieItems) {

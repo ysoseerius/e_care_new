@@ -157,7 +157,7 @@ public class SearchTabsActivity extends AppCompatActivity {
         headerName.setText(username_show);
         ImageLoader imageLoader = AppController.getInstance().getImageLoader();
         CirculaireNetworkImageView headerphoto = (CirculaireNetworkImageView) header.findViewById(R.id.drawer_thumbnail);
-        headerphoto.setImageUrl("http://192.168.43.216/test/" + dbuser.get("image"), imageLoader);
+        headerphoto.setImageUrl("http://10.89.133.147/test/" + dbuser.get("image"), imageLoader);
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
 

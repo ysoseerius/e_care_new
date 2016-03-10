@@ -37,8 +37,8 @@ public class CustomListAdapter_take extends BaseAdapter {
 	private Activity activity;
 	private LayoutInflater inflater;
 	private List<Take_med_list> takemedlistItems;
-	private static final String sendurl = "http://192.168.43.216/test/take_notice.php";
-	private static final String deleteurl = "http://192.168.43.216/test/delete_take_med.php";
+	private static final String sendurl = "http://10.89.133.147/test/take_notice.php";
+	private static final String deleteurl = "http://10.89.133.147/test/delete_take_med.php";
 	public boolean check =false;
 
 	ImageLoader imageLoader = AppController.getInstance().getImageLoader();

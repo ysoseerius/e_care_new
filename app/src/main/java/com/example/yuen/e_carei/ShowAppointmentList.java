@@ -97,8 +97,8 @@ public class ShowAppointmentList extends AppCompatActivity implements SwipeRefre
     private int offSet = 0;
 
     // Movies json url
-    private String url = "http://192.168.43.216/test/apointmentlist_patient.php";
-    private String deleteurl = "http://192.168.43.216/test/delete_appointment.php";
+    private String url = "http://10.89.133.147/test/apointmentlist_patient.php";
+    private String deleteurl = "http://10.89.133.147/test/delete_appointment.php";
     private ProgressDialog PD;
     private ArrayList arlist=new ArrayList();
 
@@ -223,7 +223,7 @@ public class ShowAppointmentList extends AppCompatActivity implements SwipeRefre
         headerName.setText(username);
         ImageLoader imageLoader = AppController.getInstance().getImageLoader();
         com.example.yuen.e_carei_doctor.customlistviewvolley.CirculaireNetworkImageView headerphoto = (com.example.yuen.e_carei_doctor.customlistviewvolley.CirculaireNetworkImageView) header.findViewById(R.id.drawer_thumbnail);
-        headerphoto.setImageUrl("http://192.168.43.216/test/" + dbuser.get("image"), imageLoader);
+        headerphoto.setImageUrl("http://10.89.133.147/test/" + dbuser.get("image"), imageLoader);
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
 

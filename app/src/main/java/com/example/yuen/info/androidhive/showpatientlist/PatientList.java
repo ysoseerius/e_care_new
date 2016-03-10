@@ -63,7 +63,7 @@ public class PatientList extends AppCompatActivity implements SwipeRefreshLayout
 	private int offSet = 0;
 
 	// Movies json url
-	private String url = "http://192.168.43.216/test/db_patientlist.php";
+	private String url = "http://10.89.133.147/test/db_patientlist.php";
 	private ProgressDialog pDialog;
 	private List<Patient> patientList = new ArrayList<Patient>();
 	private ListView listView;
@@ -174,7 +174,7 @@ public class PatientList extends AppCompatActivity implements SwipeRefreshLayout
 		headerName.setText(username);
 		ImageLoader imageLoader = AppController.getInstance().getImageLoader();
 		CirculaireNetworkImageView headerphoto = (CirculaireNetworkImageView) header.findViewById(R.id.drawer_thumbnail);
-		headerphoto.setImageUrl("http://192.168.43.216/test/" + dbuser.get("image"), imageLoader);
+		headerphoto.setImageUrl("http://10.89.133.147/test/" + dbuser.get("image"), imageLoader);
 		drawerLayout.setDrawerListener(actionBarDrawerToggle);
 		actionBarDrawerToggle.syncState();
 

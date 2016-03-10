@@ -42,7 +42,7 @@ public class SearchTwoFragment extends Fragment implements SwipeRefreshLayout.On
     private int offSet = 0;
 
     // Movies json url
-    private static final String searchurl = "http://192.168.43.216/test/search_list.php";
+    private static final String searchurl = "http://10.89.133.147/test/search_list.php";
     private ProgressDialog pDialog;
     private List<Search_list> SearchList = new ArrayList<Search_list>();
     private ListView listView;
