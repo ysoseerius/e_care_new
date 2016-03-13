@@ -10,13 +10,12 @@ Having considered all these state of affairs, this apps can make the life of the
 <h3>Expected List of Features:</h3>
 
 <h4>1.QR code login and  account registration</h4>
--There are different type of accounts such as the patients and health care group.
-
--Member of health care group will help users to create an account then give QR code for them to scan and login in their own 
+	-There are different type of accounts such as the patients and health care group.
+	-Member of health care group will help users to create an account then give QR code for them to scan and login in their own 
 
 2.Appointment management 
--Patients have a booking with health care group before they come to the connected clinic/hospital
--For the patient with appointment, this application will provide a SMS reminder for them if he is the next one.
+	-Patients have a booking with health care group before they come to the connected clinic/hospital
+	-For the patient with appointment, this application will provide a SMS reminder for them if he is the next one.
 
 3.Data storing
 -Health care group inputs the records for the patients and stores the encrypted data in the database
