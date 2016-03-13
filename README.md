@@ -9,21 +9,21 @@ Having considered all these state of affairs, this apps can make the life of the
 
 <h3>Expected List of Features:</h3>
 
-<p>1.QR code login and  account registration</p>
-	<p>There are different type of accounts such as the patients and health care group.</p>
-	Member of health care group will help users to create an account then give QR code for them to scan and login in their own 
+<h4>1.QR code login and  account registration</h4>
+-There are different type of accounts such as the patients and health care group.
+-Member of health care group will help users to create an account then give QR code for them to scan and login in their own 
 
 2.Appointment management 
-	-Patients have a booking with health care group before they come to the connected clinic/hospital
-	-For the patient with appointment, this application will provide a SMS reminder for them if he is the next one.
+-Patients have a booking with health care group before they come to the connected clinic/hospital
+-For the patient with appointment, this application will provide a SMS reminder for them if he is the next one.
 
 3.Data storing
-	Health care group inputs the records for the patients and stores the encrypted data in the database
+-Health care group inputs the records for the patients and stores the encrypted data in the database
 	
 4.Coutesy reminder of taking relevant medication
-	-The application would provide a alarm for them when time is reached to take the relevant medicine.
-	-There would provide a button for the patient to report to the doctor that they have or have not taken that medicine
+-The application would provide a alarm for them when time is reached to take the relevant medicine.
+-There would provide a button for the patient to report to the doctor that they have or have not taken that medicine
 
 5.Report system for side effect
-	-The patients have the option to report any side effects encountered while taking the medication and rate it as urgent, major or minor discomfort. 
-	-The health care group gives immediate responses to the patient and give advices to tackle the situation
+-The patients have the option to report any side effects encountered while taking the medication and rate it as urgent, major or minor discomfort. 
+-The health care group gives immediate responses to the patient and give advices to tackle the situation
