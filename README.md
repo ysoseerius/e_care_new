@@ -1,11 +1,13 @@
-Introduction:
+<h1>E-care</h1>
+<h3>Introduction:</h3>
 
-How this “E-care” comes in the blueprint?
+<b>How this “E-care” comes in the blueprint?</b>
+
 Once an experience at which we could not do anything out of position if waiting for diagnosis from doctor, resulting in a long awkward waiting time. Perhaps, a lengthy waiting time is required in virtue of the overcroweded queue once fetching the medication. Probably, have you ever forgotten to take the medicine due to engaged work? Even we might be all adrift to the drug allergy encountered by our relatives out of the medical knowledge in one day.
 Hence, this application “E-care”, which renders a communicating platform for the patients and doctors, is able to tackle the mentioned troublesome issues. Simply, this apps facilitates the process of medicine acquisition or appointment without unnessary waits from the hospital. Explicitly, a swift message either arranging which medicine or doctor patients assigned will be shown in the phone as long as press only a button in the apps. Likewise, the medical personnel can follow up can conditions of relative patients swiftly with care. 
 Having considered all these state of affairs, this apps can make the life of the patients and doctors easier and better.
 
-Expected List of Features:
+<h3>Expected List of Features:</h3>
 
 1.QR code login and  account registration
 	-There are different type of accounts such as the patients and health care group.
@@ -17,6 +19,7 @@ Expected List of Features:
 
 3.Data storing
 	Health care group inputs the records for the patients and stores the encrypted data in the database
+	
 4.Coutesy reminder of taking relevant medication
 	-The application would provide a alarm for them when time is reached to take the relevant medicine.
 	-There would provide a button for the patient to report to the doctor that they have or have not taken that medicine
