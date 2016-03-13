@@ -12,10 +12,13 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.transition.Explode;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -52,7 +55,7 @@ import za.co.neilson.alarm.AlarmActivity;
 
 public class Case_history_review extends Activity {
 
-    private static final String url = "http://10.89.133.147/test/read_case_history.php";
+    private static final String url = "http://192.168.43.216/test/read_case_history.php";
     private ListView patientList;
     private CustomListAdapter adapter;
     private TextView namet, idt;
@@ -76,11 +79,16 @@ public class Case_history_review extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_case_history_review);
+        setupWindowAnimations();
+        //getWindow().setEnterTransition(new Explode());
 
         ImageLoader imageLoader = AppController.getInstance().getImageLoader();
         final TextView no_of_case_history = (TextView) findViewById(R.id.no_of_case_history);
         TextView date_of_case_history = (TextView)findViewById(R.id.date_of_case_history);
         CirculaireNetworkImageView photo = (CirculaireNetworkImageView) findViewById(R.id.photo);
+
+        Animation zoomInAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.zoom_in_animation);
+        photo.startAnimation(zoomInAnimation);
 
         Intent i = getIntent();
         uid = i.getStringExtra("uid");
@@ -355,6 +363,7 @@ public class Case_history_review extends Activity {
         }
         //
 
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setVisibility(View.GONE);
         if(dbuser.get("account_type").equals("1")) {
@@ -371,6 +380,16 @@ public class Case_history_review extends Activity {
         }
     }
 
+
+    public void setupWindowAnimations() {
+        getWindow().setEnterTransition(new Explode());
+        getWindow().getExitTransition().setDuration(getResources().getInteger(R.integer.anim_duration_long));
+        CirculaireNetworkImageView photo = (CirculaireNetworkImageView) findViewById(R.id.photo);
+
+        Animation zoomInAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.zoom_in_animation);
+        photo.startAnimation(zoomInAnimation);
+
+    }
 
     private Drawable loadImageFromURL(String url){
         try{

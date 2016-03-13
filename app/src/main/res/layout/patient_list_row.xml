@@ -7,14 +7,16 @@
 
 
     <!-- Thumbnail Image -->
-    <com.example.yuen.info.androidhive.showpatientlist.CirculaireNetworkImageView
+    <com.example.yuen.e_carei_doctor.customlistviewvolley.CirculaireNetworkImageView
         android:id="@+id/thumbnail"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:elevation="8dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:layout_marginLeft="20dp" />
+        android:layout_marginLeft="20dp"
+        android:transitionName="@string/blue_name"
+        />
 
     <!-- Movie Title -->
     <TextView

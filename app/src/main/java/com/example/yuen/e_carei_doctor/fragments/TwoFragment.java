@@ -39,7 +39,7 @@ public class TwoFragment extends android.support.v4.app.Fragment implements Swip
     private int offSet = 0;
 
     // Movies json url
-    private static final String takelisturl = "http://192.168.43.216/test/take_med_list.php";
+    private static final String takelisturl = "http://10.89.133.147/test/take_med_list.php";
     private ProgressDialog pDialog;
     private List<Take_med_list> takemedlistList = new ArrayList<Take_med_list>();
     private ListView listView;

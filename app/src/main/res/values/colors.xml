@@ -36,4 +36,6 @@
     <color name="btn_login">#eceef1</color>
     <color name="btn_login_bg">#00BBD3</color>
 
+
+    <color name="light_grey">#E0E0E0</color>
 </resources>

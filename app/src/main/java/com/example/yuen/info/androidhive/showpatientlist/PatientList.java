@@ -1,5 +1,6 @@
 package com.example.yuen.info.androidhive.showpatientlist;
 
+import android.app.ActivityOptions;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -11,6 +12,8 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.transition.Explode;
+import android.transition.Fade;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -63,7 +66,7 @@ public class PatientList extends AppCompatActivity implements SwipeRefreshLayout
 	private int offSet = 0;
 
 	// Movies json url
-	private String url = "http://10.89.133.147/test/db_patientlist.php";
+	private String url = "http://192.168.43.216/test/db_patientlist.php";
 	private ProgressDialog pDialog;
 	private List<Patient> patientList = new ArrayList<Patient>();
 	private ListView listView;
@@ -79,7 +82,7 @@ public class PatientList extends AppCompatActivity implements SwipeRefreshLayout
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.patientlist_listview);
-
+		getWindow().setExitTransition(new Explode());
 
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 		toolbar.setTitle("E-care");
@@ -174,7 +177,7 @@ public class PatientList extends AppCompatActivity implements SwipeRefreshLayout
 		headerName.setText(username);
 		ImageLoader imageLoader = AppController.getInstance().getImageLoader();
 		CirculaireNetworkImageView headerphoto = (CirculaireNetworkImageView) header.findViewById(R.id.drawer_thumbnail);
-		headerphoto.setImageUrl("http://10.89.133.147/test/" + dbuser.get("image"), imageLoader);
+		headerphoto.setImageUrl("http://192.168.43.216/test/" + dbuser.get("image"), imageLoader);
 		drawerLayout.setDrawerListener(actionBarDrawerToggle);
 		actionBarDrawerToggle.syncState();
 
@@ -220,6 +223,7 @@ public class PatientList extends AppCompatActivity implements SwipeRefreshLayout
 				Log.d("position","0"+position);
 				TextView tv_uid =(TextView) view.findViewById(R.id.uid);
 				TextView tv_name =(TextView) view.findViewById(R.id.title);
+				CirculaireNetworkImageView patent_photo = (CirculaireNetworkImageView) view.findViewById(R.id.thumbnail);
 				String saved_name= tv_name.getText().toString();
 				String saved_uid= tv_uid.getText().toString();
 				//取得arraylist內容
@@ -228,12 +232,26 @@ public class PatientList extends AppCompatActivity implements SwipeRefreshLayout
 				i.setClass(PatientList.this, Case_history_review.class);
 				i.putExtra("uid", saved_uid);
 				i.putExtra("name", saved_name);
-				Log.d("name_image",saved_image);
+				Log.d("name_image", saved_image);
 				i.putExtra("image", saved_image);
-				startActivity(i);
+				View sharedView = patent_photo;
+				String transitionName = getString(R.string.blue_name);
+				ActivityOptions transitionActivityOptions = ActivityOptions.makeSceneTransitionAnimation(PatientList.this, sharedView, transitionName);
+				//setupWindowAnimations();
+				startActivity(i, transitionActivityOptions.toBundle());
+				overridePendingTransition(R.transition.fade_in, R.transition.fade_out);
 			}
 
 		});
+
+	}
+
+	private void setupWindowAnimations() {
+		getWindow().getEnterTransition().setDuration(getResources().getInteger(R.integer.anim_duration_long));
+
+		Fade fade = new Fade();
+		fade.setDuration(1000);
+		getWindow().setEnterTransition(fade);
 
 	}
 

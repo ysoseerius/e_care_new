@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.android.volley.toolbox.ImageLoader;
 import com.example.yuen.e_carei.R;
 import com.example.yuen.e_carei_app.AppController;
-import com.example.yuen.info.androidhive.showpatientlist.CirculaireNetworkImageView;
+import com.example.yuen.e_carei_doctor.customlistviewvolley.CirculaireNetworkImageView;
 import com.example.yuen.info.androidhive.showpatientlist.model.Patient;
 
 import java.util.List;

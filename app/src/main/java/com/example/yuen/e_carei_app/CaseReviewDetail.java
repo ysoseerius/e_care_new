@@ -23,7 +23,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.NetworkImageView;
 import com.example.yuen.PatientReport;
 import com.example.yuen.e_carei.Appointmentcreate;
 import com.example.yuen.e_carei.R;
@@ -267,7 +266,7 @@ public class CaseReviewDetail extends AppCompatActivity {
             String username = dbuser.get("name");
             headerName.setText(username);
             CirculaireNetworkImageView headerphoto = (CirculaireNetworkImageView) header.findViewById(R.id.drawer_thumbnail);
-            headerphoto.setImageUrl("http://192.168.43.216/test/" + dbuser.get("image"), imageLoader);
+            headerphoto.setImageUrl("http://10.89.133.147/test/" + dbuser.get("image"), imageLoader);
             drawerLayout.setDrawerListener(actionBarDrawerToggle);
             actionBarDrawerToggle.syncState();
         }
@@ -310,7 +309,7 @@ public class CaseReviewDetail extends AppCompatActivity {
                         TextView medication = (TextView) findViewById(R.id.name_medication_case_history);
                         TextView detail = (TextView) findViewById(R.id.name_detail_case_history);
                         TextView report = (TextView) findViewById(R.id.name_report_case_history);
-                        NetworkImageView photo= (NetworkImageView) findViewById(R.id.photo);
+                        CirculaireNetworkImageView photo = (CirculaireNetworkImageView) findViewById(R.id.photo);
 
                 for (int i = 0; i < response.length();i++) {
                     try {
@@ -337,7 +336,7 @@ public class CaseReviewDetail extends AppCompatActivity {
 
                             JSONObject objimage = response.getJSONObject(++i);
                             ImageLoader imageLoader = AppController.getInstance().getImageLoader();
-                            photo.setImageUrl(objimage.getString("image"), imageLoader);
+                            photo.setImageUrl("http://10.89.133.147/test/" + objimage.getString("image"), imageLoader);
 
                             case_number_show.setText("Case Number : " + case_number);
 

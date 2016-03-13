@@ -40,7 +40,7 @@ public class OneFragment extends Fragment implements SwipeRefreshLayout.OnRefres
     private int offSet = 0;
 
     // Movies json url
-    private static final String url = "http://192.168.43.216/test/appointment_list.php";
+    private static final String url = "http://10.89.133.147/test/appointment_list.php";
     private ProgressDialog pDialog;
     private List<Appointment> appointmentList = new ArrayList<Appointment>();
     private ListView listView;

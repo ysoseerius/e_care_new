@@ -39,7 +39,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.android.volley.toolbox.NetworkImageView
+    <com.example.yuen.e_carei_doctor.customlistviewvolley.CirculaireNetworkImageView
         android:src="@drawable/hi"
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -66,7 +66,8 @@
             android:paddingBottom="10dp"
             android:paddingLeft="10dp"
             android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            style="@style/MaterialAnimations.Text.Body"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -76,7 +77,8 @@
             android:id="@+id/idTag"
             android:paddingLeft="11dp"
             android:layout_below="@+id/textView2"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            style="@style/MaterialAnimations.Text.Body"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -86,7 +88,8 @@
             android:id="@+id/name_show"
             android:paddingBottom="10dp"
             android:layout_above="@+id/uid_show"
-            android:layout_toEndOf="@+id/textView2" />
+            android:layout_toEndOf="@+id/textView2"
+            style="@style/MaterialAnimations.Text.Body"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -95,7 +98,8 @@
             android:textSize="25sp"
             android:id="@+id/uid_show"
             android:layout_below="@+id/textView2"
-            android:layout_toEndOf="@+id/idTag" />
+            android:layout_toEndOf="@+id/idTag"
+            style="@style/MaterialAnimations.Text.Body"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -115,7 +119,8 @@
             android:paddingBottom="10dp"
             android:paddingLeft="10dp"
             android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            style="@style/MaterialAnimations.Text.Body"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -128,7 +133,8 @@
             android:paddingBottom="10dp"
             android:paddingLeft="10dp"
             android:layout_below="@+id/solo_case_history"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            style="@style/MaterialAnimations.Text.Body"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -141,7 +147,8 @@
             android:paddingBottom="10dp"
             android:paddingLeft="10dp"
             android:layout_below="@+id/doctor_case_history"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            style="@style/MaterialAnimations.Text.Body"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -154,7 +161,8 @@
             android:paddingBottom="10dp"
             android:paddingLeft="10dp"
             android:layout_below="@+id/medication_case_history"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            style="@style/MaterialAnimations.Text.Body"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -167,7 +175,8 @@
             android:paddingBottom="10dp"
             android:paddingLeft="10dp"
             android:layout_below="@+id/detail_case_history"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            style="@style/MaterialAnimations.Text.Body"/>
 
         <Button
             android:layout_width="150dp"
@@ -189,7 +198,8 @@
             android:paddingTop="10dp"
             android:id="@+id/name_doctor_case_history"
             android:layout_below="@+id/solo_case_history"
-            android:layout_toEndOf="@+id/doctor_case_history" />
+            android:layout_toEndOf="@+id/doctor_case_history"
+            style="@style/MaterialAnimations.Text.Body"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -199,7 +209,8 @@
             android:paddingTop="10dp"
             android:id="@+id/name_medication_case_history"
             android:layout_alignTop="@+id/medication_case_history"
-            android:layout_toEndOf="@+id/medication_case_history" />
+            android:layout_toEndOf="@+id/medication_case_history"
+            style="@style/MaterialAnimations.Text.Body"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -209,7 +220,8 @@
             android:textSize="25sp"
             android:paddingTop="10dp"
             android:layout_below="@+id/medication_case_history"
-            android:layout_toEndOf="@+id/detail_case_history" />
+            android:layout_toEndOf="@+id/detail_case_history"
+            style="@style/MaterialAnimations.Text.Body"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -219,7 +231,8 @@
             android:textSize="25sp"
             android:paddingTop="10dp"
             android:layout_below="@+id/detail_case_history"
-            android:layout_toEndOf="@+id/doctor_case_history" />
+            android:layout_toEndOf="@+id/doctor_case_history"
+            style="@style/MaterialAnimations.Text.Body"/>
 
     </RelativeLayout>
 
