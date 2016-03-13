@@ -9,8 +9,8 @@ Having considered all these state of affairs, this apps can make the life of the
 
 <h3>Expected List of Features:</h3>
 
-<h4> 1.QR code login and  account registration </h4>
-	-There are different type of accounts such as the patients and health care group.
+<p>1.QR code login and  account registration</p>
+	<p>-There are different type of accounts such as the patients and health care group.</p>
 	-Member of health care group will help users to create an account then give QR code for them to scan and login in their own 
 
 2.Appointment management 
