@@ -1,6 +1,6 @@
 <h1>E-care</h1>
 <h3>Introduction:</h3>
-<img src="http://images.nationalgeographic.com/wpf/media-live/photos/000/936/cache/bear-road-denali_93621_990x742.jpg" alt="Mountain View" style="width:304px;height:228px;">
+<img src="https://github.com/ysoseerius/e_care_new/blob/master/ic_launcher.png" alt="Mountain View" style="width:304px;height:228px;">
 <b>How this “E-care” comes in the blueprint?</b>
 
 Once an experience at which we could not do anything out of position if waiting for diagnosis from doctor, resulting in a long awkward waiting time. Perhaps, a lengthy waiting time is required in virtue of the overcroweded queue once fetching the medication. Probably, have you ever forgotten to take the medicine due to engaged work? Even we might be all adrift to the drug allergy encountered by our relatives out of the medical knowledge in one day.
