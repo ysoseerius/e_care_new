@@ -11,7 +11,7 @@ Having considered all these state of affairs, this apps can make the life of the
 
 <h4>1.QR code login and  account registration</h4>
 There are different type of accounts such as the patients and health care group. The member of health care group will help users to create an account then give QR code for them to scan and login in their own 
-
+<img src="https://github.com/ysoseerius/e_care_new/blob/master/screenshot/Screenshot_2016-01-18-23-34-23.png" alt="Login" height="1920" width="1080">
 <h4>2.Appointment management </h4>
 Patients have a booking with health care group before they come to the connected clinic/hospital. For the patient with appointment, this application will provide a SMS reminder for them if he is the next one.
 
