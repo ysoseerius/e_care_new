@@ -12,15 +12,18 @@ Having considered all these state of affairs, this apps can make the life of the
 <h4>1.QR code login and  account registration</h4>
 There are different type of accounts such as the patients and health care group. The member of health care group will help users to create an account then give QR code for them to scan and login in their own devices.
 <br>
-<img src="https://github.com/ysoseerius/e_care_new/blob/master/screenshot/Screenshot_2016-01-18-23-34-23.png" alt="Login" height="400" width="230">
+<img src="https://github.com/ysoseerius/e_care_new/blob/master/screenshot/%E6%9C%AA%E5%91%BD%E5%90%8D.png" alt="Login" height="400" width="230">
 <h4>2.Appointment management </h4>
 Patients have a booking with health care group before they come to the connected clinic/hospital. For the patient with appointment, this application will provide a SMS reminder for them if he is the next one.
-
+<br>
+<img src="https://github.com/ysoseerius/e_care_new/blob/master/screenshot/Screenshot_2016-01-18-23-35-44.png" alt="Appointment" height="400" width="230">
+<img src="https://github.com/ysoseerius/e_care_new/blob/master/screenshot/Screenshot_2016-01-18-23-34-23.png" alt="Take_med" height="400" width="230">
 <h4>3.Data storing</h4>
-Health care group inputs the records for the patients and stores the encrypted data in the database
+Health care group inputs the records for the patients and stores the data in the database
 	
 <h4>4.Coutesy reminder of taking relevant medication</h4>
 The application would provide a alarm for them when time is reached to take the relevant medicine. There would provide a button for the patient to report to the doctor that they have or have not taken that medicine
-
+<img src="https://github.com/ysoseerius/e_care_new/blob/master/screenshot/Screenshot_2016-01-18-23-37-30.png" alt="Alarm" height="400" width="230">
 <h4>5.Report system for side effect</h4>
 The patients have the option to report any side effects encountered while taking the medication and rate it as urgent, major or minor discomfort. The health care group gives immediate responses to the patient and give advices to tackle the situation
+<img src="https://github.com/ysoseerius/e_care_new/blob/master/screenshot/%E6%9C%AA%E5%91%BD%E5%90%8D2.png" alt="Report" height="400" width="230">
