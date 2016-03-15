@@ -16,11 +16,19 @@ There are different type of accounts such as the patients and health care group.
 <h4>2.Appointment management </h4>
 Patients have a booking with health care group before they come to the connected clinic/hospital. For the patient with appointment, this application will provide a SMS reminder for them if he is the next one.
 <br>
+<h6>Patient side: Create appointment and appointment list </h6>
+<img src="https://github.com/ysoseerius/e_care_new/blob/master/screenshot/Screenshot_2016-03-15-22-16-03.png" alt="Appointment" height="400" width="230">
+<img src="https://github.com/ysoseerius/e_care_new/blob/master/screenshot/Screenshot_2016-03-15-22-17-17.png" alt="Appointment" height="400" width="230">
+<br
+<h6>Health care group side: All appointment list and take medication list </h6>
 <img src="https://github.com/ysoseerius/e_care_new/blob/master/screenshot/Screenshot_2016-01-18-23-35-44.png" alt="Appointment" height="400" width="230">
 <img src="https://github.com/ysoseerius/e_care_new/blob/master/screenshot/Screenshot_2016-01-18-23-34-23.png" alt="Take_med" height="400" width="230">
 <h4>3.Data storing</h4>
-Health care group inputs the records for the patients and stores the data in the database
-	
+Health care group inputs the records for the patients and stores the data in the database. The process of input data only can be carried out by the health care group.
+<br>
+<img src="https://github.com/ysoseerius/e_care_new/blob/master/screenshot/Screenshot_2016-03-15-22-26-54.png" alt="Record" height="400" width="230">
+<img src="https://github.com/ysoseerius/e_care_new/blob/master/screenshot/Screenshot_2016-03-15-22-26-59.png" alt="Record" height="400" width="230">
+
 <h4>4.Coutesy reminder of taking relevant medication</h4>
 The application would provide a alarm for them when time is reached to take the relevant medicine. There would provide a button for the patient to report to the doctor that they have or have not taken that medicine
 <br>
