@@ -19,7 +19,7 @@ Patients have a booking with health care group before they come to the connected
 <h6>Patient side: Create appointment and appointment list </h6>
 <img src="https://github.com/ysoseerius/e_care_new/blob/master/screenshot/Screenshot_2016-03-15-22-16-03.png" alt="Appointment" height="400" width="230">
 <img src="https://github.com/ysoseerius/e_care_new/blob/master/screenshot/Screenshot_2016-03-15-22-17-17.png" alt="Appointment" height="400" width="230">
-<br
+<br>
 <h6>Health care group side: All appointment list and take medication list </h6>
 <img src="https://github.com/ysoseerius/e_care_new/blob/master/screenshot/Screenshot_2016-01-18-23-35-44.png" alt="Appointment" height="400" width="230">
 <img src="https://github.com/ysoseerius/e_care_new/blob/master/screenshot/Screenshot_2016-01-18-23-34-23.png" alt="Take_med" height="400" width="230">
